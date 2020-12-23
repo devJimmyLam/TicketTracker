@@ -40,7 +40,6 @@ public class MainController {
 		this.ticketService = ticketService;
 		this.messageService = messageService;
 	}
-	
     @GetMapping("/welcome")
     public String showWelcomePage(
     		@ModelAttribute("user") User user, 
@@ -48,11 +47,9 @@ public class MainController {
     		HttpSession session) {
 			return "welcome.jsp";
 	}
-    
 	///////
 	//Users Controller methods
 	///////
-    
     @PostMapping(value="/registration")
     public String registerUser(
     		Model model,
@@ -71,7 +68,6 @@ public class MainController {
         return "redirect:/tickets";
     }
 
- 
     @PostMapping(value="/login")
     public String loginUser(
     		@RequestParam("email") String email, 
@@ -85,16 +81,19 @@ public class MainController {
     		session.setAttribute("userId", thisUser.getId());
     		return "redirect:/tickets";
     	} else {
-    		// else, add error messages and return the login page.
-    		//Debug Notes: be sure to spell error or errors correct to match the form c:out ${error} or c:out${errors} 
     		System.out.println("user login error");
     		flashMessage.addFlashAttribute("errors", "Failed to login.");
     		return "redirect:/welcome";
     	}
         
     }
-    
-
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        // invalidate session
+    	session.invalidate();
+        // redirect to login page
+    	return "redirect:/welcome";
+    }
 	////////
 	//Tickets Controller methods
 	////////
@@ -106,10 +105,10 @@ public class MainController {
 			model.addAttribute("user", user);
 			List<Ticket> tickets = ticketService.findAllTickets();
 			model.addAttribute("tickets", tickets); 
-//			model.addAttribute("creator_id", ticketService.findTicketByCreator(user.getCreatedTickets()));
-//			model.addAttribute("assignee_id", ticketService.findTicketByAssignee(user.getAssignedTickets()));
-//			model.addAttribute("severityType", ticketService.findTicketBySeverityType(user.getSeverityType()));
-//			model.addAttribute("status", ticketService.findTicketByStatus(ticket.getStatus()));
+    		List<User> assignee = userService.findAllUsers();
+    		model.addAttribute("assignees", assignee);
+			model.addAttribute("severityType", SeverityType.severityType);
+			model.addAttribute("status", Status.status);
 			return "allTickets.jsp";
 		}else {
 			return "redirect:/welcome";
@@ -117,25 +116,39 @@ public class MainController {
   	}
 	
     @GetMapping("/tickets/new")
-	public String newTicketPage(Model model, @ModelAttribute("ticket") Ticket ticket) {
-    	//create a list of users to pick an assignee
-    	List<User> user = userService.findAllUsers();
-    	model.addAttribute("users", user);
-		return "newTicket.jsp";
-	}
+	public String newTicketPage(@ModelAttribute("ticket") Ticket ticket, Model model, HttpSession session) {
+       	Long id = (Long) session.getAttribute("userId");
+    	if(id != null) {
+    		User user = userService.findUserById((Long) session.getAttribute("userId"));
+    		model.addAttribute("user", user);
+    		//create a list of users to pick as assignee
+    		List<User> assignee = userService.findAllUsers();
+    		model.addAttribute("assignees", assignee);
+			model.addAttribute("severityType", SeverityType.severityType);
+			model.addAttribute("status", Status.status);
+    		return "newTicket.jsp";
+    	}else {
+    		return "redirect:/welcome";
+    	}
+    
+    }
 	
     @PostMapping("/tickets/add")
-	public String createTicket(HttpSession session, Model model, @Valid @ModelAttribute("ticket") Ticket ticket, BindingResult result) {
+	public String createTicket(@Valid @ModelAttribute("ticket") Ticket ticket, BindingResult result,Model model, HttpSession session){
 		Long userId = (Long) session.getAttribute("userId");
 		User user = userService.findUserById(userId);
 		if(result.hasErrors()) {
 			model.addAttribute("user", user);
-			model.addAttribute("tickets", ticket);
+			model.addAttribute("ticket", ticket);
+    		List<User> assignee = userService.findAllUsers();
+    		model.addAttribute("assignees", assignee);
+			model.addAttribute("severityType", SeverityType.severityType);
+			model.addAttribute("status", Status.status);
 			return "newTicket.jsp";
 		}else {
 			ticket.setCreator(user);
 			ticketService.createTicket(ticket);
-			return "redirect:/tickets/"+ticket.getId();
+			return "redirect:/tickets";
 		}
 	}
 	
@@ -144,9 +157,14 @@ public class MainController {
 		Long userId = (Long) session.getAttribute("userId");
 		if(userId != null) {
 			User user = userService.findUserById((Long) session.getAttribute("userId"));
+			model.addAttribute("user", user);
 			Ticket ticket = ticketService.findTicketById(ticketId);
 			model.addAttribute("ticket", ticket);
-			return "newTicket.jsp";
+//    		List<User> assignee = userService.findAllUsers();
+//    		model.addAttribute("assignees", assignee);
+			model.addAttribute("severityType", SeverityType.severityType);
+			model.addAttribute("status", Status.status);
+			return "ticketDetail.jsp";
 		}else {
 			return "redirect:/welcome";
 		}
@@ -159,10 +177,10 @@ public class MainController {
 			Ticket ticket = ticketService.findTicketById(ticketId);
 			model.addAttribute("ticketNumber", ticket.getNumber());
 			model.addAttribute("name", ticket.getName());
-			model.addAttribute("description", ticket.getDescription());
+			model.addAttribute("severity", ticket.getSeverityType());
+			model.addAttribute("status", ticket.getStatus());
 			model.addAttribute("dueDate", ticket.getDueDate());
-			model.addAttribute("severity", SeverityType.severityType);
-			model.addAttribute("status", Status.status);
+			model.addAttribute("description", ticket.getDescription());
 			return "editTicket.jsp";
 		}else {
 			return "redirect:/welcome";
@@ -177,11 +195,10 @@ public class MainController {
 		if(result.hasErrors()) {
 			model.addAttribute("ticketNumber", ticket.getNumber());
 			model.addAttribute("name", ticket.getName());
-			model.addAttribute("status", Status.status);
-			model.addAttribute("severity", SeverityType.severityType);
+			model.addAttribute("severity", ticket.getSeverityType());
+			model.addAttribute("status", ticket.getStatus());
 			model.addAttribute("dueDate", ticket.getDueDate());
 			model.addAttribute("description", ticket.getDescription());
-			model.addAttribute("status", Status.status);
 			return "editTicket.jsp";
 		}else {
 			ticket.setNumber(editTicket.getNumber());
@@ -201,51 +218,7 @@ public class MainController {
 		ticketService.deleteTicket(ticket);
 			return "redirect:/tickets";
 	}
-//	@RequestMapping("/tickets/{id}/delete")
-//	public String deleteTicket(@PathVariable("id") Long ticketId, HttpSession session) {
-//		Long userId = (Long) session.getAttribute("userId");
-//		if(userId != null) {
-//			Ticket ticket = ticketService.findTicketById(ticketId);
-//			Long uid = (Long) session.getAttribute("userId");
-//			//only delete ticket if logged in user is the host
-//			if(uid == ticket.getCreator().getId()) {
-//				ticketService.deleteTicket(ticket);
-//			}
-//			return "redirect:/tickets";
-//		}else {
-//			return "redirect:/welcome";
-//		}
-//	}
-	//////////
-	//JOIN AND CANCEL JOIN EVENTS.
-	//////////
-//	@RequestMapping("/tickets/{id}/join")
-//	public String joinTicket(@PathVariable("id") Long id, HttpSession session) {
-//		Long userId = (Long) session.getAttribute("userId");
-//		if(userId != null) {
-//			User user = userService.findUserById((Long) session.getAttribute("userId"));
-//			Ticket ticket = ticketService.findTicketById(id);
-//			ticket.userIsAssignee(user);
-//			ticketService.updateTicket(ticket);
-//			return "redirect:/tickets";
-//		}else {
-//			return "redirect:/welcome";
-//		}
-//	}
-//	@RequestMapping("/tickets/{id}/cancel")
-//	public String joineTicketCancel(@PathVariable("id") Long id, HttpSession session) {
-//		Long userId = (Long) session.getAttribute("userId");
-//		if(userId != null) {
-//			User user = userService.findUserById((Long) session.getAttribute("userId"));
-//			Ticket ticket = ticketService.findTicketById(id);
-//			ticket.removeAttendee(user);
-//			ticketService.updateTicket(ticket);
-//			return "redirect:/tickets";
-//		}else {
-//			return "redirect:/welcome";
-//		}
-//	}
-	
+
 	//////////
 	//Messages Controller methods
 	//////////
@@ -254,7 +227,13 @@ public class MainController {
 		Long userId = (Long) session.getAttribute("userId");
 		if(userId != null) {
 			User user = userService.findUserById((Long) session.getAttribute("userId"));
+			model.addAttribute("user", user);
 			Ticket ticket = ticketService.findTicketById(ticketId);
+			model.addAttribute("ticket", ticket);
+    		List<User> assignee = userService.findAllUsers();
+    		model.addAttribute("assignees", assignee);
+			model.addAttribute("severityType", SeverityType.severityType);
+			model.addAttribute("status", Status.status);
 			//create new message
 			Message newMessage = new Message();
 			newMessage.setMessage(message);
@@ -266,16 +245,6 @@ public class MainController {
 			return "redirect:/welcome";
 		}
 	}
-    
-	//////////
-	//LOGOUT
-	//////////
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        // invalidate session
-    	session.invalidate();
-        // redirect to login page
-    	return "redirect:/welcome";
-    }
+
  
 }

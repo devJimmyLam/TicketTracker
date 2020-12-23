@@ -17,7 +17,12 @@ public class TicketService {
 	public List<Ticket> findAllTickets(){
 		return ticketRepo.findAll();
 	}
-	
+	public List<Ticket> findTicketBySeverityType(String severityType){
+		return ticketRepo.findBySeverityType(severityType);
+	}
+	public List<Ticket> findTicketByStatus(String status){
+		return ticketRepo.findByStatus(status);
+	}
 	//Allow users to create a ticket but the ticket number is done by the server. 
 	//The first creator in the DB has a ticket number of 000001. Increment by 1 every time a new creator is added.
 	public Ticket createTicket(Ticket ticket) {
@@ -49,34 +54,9 @@ public class TicketService {
 			return null;
 		}
 	}
-	
 	public void deleteTicket(Ticket ticket) {
 		ticketRepo.delete(ticket);
 	}
-	
-	
-	//find ticket by creator
-	public List<Ticket> findTicketByCreator(Long creator_id){
-		return ticketRepo.findByCreator(creator_id);
-	}
-	
-
-	//find ticket by assignee
-	public List<Ticket> findTicketByAssignee(Long assignee_id){
-		return ticketRepo.findByAssignee(assignee_id);
-	}
-	
-	
-	//find ticket by severity type
-	public List<Ticket> findTicketBySeverityType(String severityType){
-		return ticketRepo.findBySeverityType(severityType);
-	}
-
-	//find ticket by status
-	public List<Ticket> findTicketByStatus(String status){
-		return ticketRepo.findByStatus(status);
-	}
-
 	public void updateTicket(Ticket ticket) {
 		ticketRepo.save(ticket);
 	}

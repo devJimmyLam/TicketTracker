@@ -11,16 +11,7 @@ import com.tickettracker.main.models.Ticket;
 public interface TicketRepository extends CrudRepository<Ticket, Long>{
 
 	List<Ticket> findAll();
-	
-	List<Ticket> findByCreator(Long creator_id);
-//	List<Ticket> findByNotCreator(String creator);
-	
-	List<Ticket> findByAssignee(Long assignee_id);
-//	List<Ticket> findByNotAssignee(String assignee);
-	
 	List<Ticket> findBySeverityType(String severityType);
-//	List<Ticket> findBySeverityTypeNot(String severityType);
-	
 	List<Ticket> findByStatus(String status);
-//	List<Ticket> findByStatusNot(String status);
+
 }
