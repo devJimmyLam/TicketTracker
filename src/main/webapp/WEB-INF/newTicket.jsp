@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <title>TicketTracker</title>
 </head>
-<body style="background: #fbf5f3">
+<body style="background: #d3d3d3">
 		<nav class="navbar navbar-dark bg-dark navbar-expand-sm justify-content-between">
   <a class="navbar-brand text-info" href="#">TicketTracker</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

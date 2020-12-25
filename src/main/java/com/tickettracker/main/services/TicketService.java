@@ -28,19 +28,13 @@ public class TicketService {
 	public Ticket createTicket(Ticket ticket) {
 		//Create ticket number by converting id to string and padding zeros in front
 		Long number = ticket.getCreator().getId();
-		//expected to print person id 
-		System.out.println(number);
 		int numLength = String.valueOf(number).length();
-		//expected to print "Length: 1
-		System.out.println("Length:" + numLength);
-		
 		// Increment by 1 every time a new creator is added.
 		int numZeros = 6-numLength;
 		String ticketNumber = "";
 		for(int i = 0; i < numZeros; i++) {
 			ticketNumber = ticketNumber + "0";
 		}
-		System.out.println(ticketNumber);
 		ticketNumber = ticketNumber + String.valueOf(number);
 		ticket.setNumber(ticketNumber);
 		return ticketRepo.save(ticket);

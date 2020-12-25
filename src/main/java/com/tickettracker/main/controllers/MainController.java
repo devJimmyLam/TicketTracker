@@ -160,8 +160,6 @@ public class MainController {
 			model.addAttribute("user", user);
 			Ticket ticket = ticketService.findTicketById(ticketId);
 			model.addAttribute("ticket", ticket);
-//    		List<User> assignee = userService.findAllUsers();
-//    		model.addAttribute("assignees", assignee);
 			model.addAttribute("severityType", SeverityType.severityType);
 			model.addAttribute("status", Status.status);
 			return "ticketDetail.jsp";
@@ -173,7 +171,13 @@ public class MainController {
 	@GetMapping("/tickets/{id}/edit")
 	public String showEditTicketPage(@PathVariable("id") Long ticketId,Model model, HttpSession session, @ModelAttribute("ticket") Ticket editTicket) {
 		Long userId = (Long) session.getAttribute("userId");
+		User user = userService.findUserById(userId);
 		if(userId != null) {
+			model.addAttribute("user", user);
+    		List<User> assignee = userService.findAllUsers();
+    		model.addAttribute("assignees", assignee);
+			model.addAttribute("severityType", SeverityType.severityType);
+			model.addAttribute("status", Status.status);
 			Ticket ticket = ticketService.findTicketById(ticketId);
 			model.addAttribute("ticketNumber", ticket.getNumber());
 			model.addAttribute("name", ticket.getName());
@@ -187,7 +191,7 @@ public class MainController {
 		}
 	}
 	
-	@PostMapping("/tickets/{id}/edit")
+	@PostMapping("/tickets/{id}/update")
 	public String editTicket(@PathVariable("id") Long ticketId, Model model, HttpSession session, @Valid @ModelAttribute("ticket") Ticket editTicket, BindingResult result) {
 		Long userId = (Long) session.getAttribute("userId");
 		User user = userService.findUserById(userId);
@@ -208,7 +212,7 @@ public class MainController {
 			ticket.setDueDate(editTicket.getDueDate());
 			ticket.setDescription(editTicket.getDescription());
 			ticketService.updateTicket(ticket);
-			return "redirect:/tickets";
+			return "redirect:/tickets/" + ticket.getId();
 		}
 	}
 	

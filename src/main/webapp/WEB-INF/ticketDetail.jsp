@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <title>TicketTracker</title>
 </head>
-<body style="background: #fbf5f3">
+<body style="background: #d3d3d3">
 		<nav class="navbar navbar-dark bg-dark navbar-expand-sm justify-content-between">
   <a class="navbar-brand text-info" href="#">TicketTracker</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,10 +24,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
+        <a class="nav-link" href="/tickets">Dashboard</a>
+      </li>
+      <li class="nav-item">
 <a class="nav-link" href="/logout">Logout,<c:out value="${user.firstName}"/></a>
       </li>
     </ul>
-    <a class="btn btn-outline-success my-2 my-sm-0" href="/tickets/new" type="btn">New Ticket</a>
+    <a class="btn btn-outline-success my-2 my-sm-0" href="/tickets/${ticket.id}/edit" type="btn">Edit Ticket</a>
     <form class="form-inline my-2 my-lg-0" action="/ticket/search" method="GET">
       <input class="form-control mr-sm-2" type="search" placeholder="Ticket#" aria-label="Ticket#">
       <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
@@ -50,7 +53,7 @@
                         <div class="col-3">Status:</div>
                         <div class="col-8"><c:out value="${ticket.status}"/></div>
                     </div>
-                    <div class="card" style="width: 18rem;">
+                    <div class="card">
                     	<div class="row my-1">
                       		<div class="col-3">Severity Type:</div>
                         	<div class="col-8"><c:out value="${ticket.severityType}"/></div>
@@ -89,7 +92,7 @@
 	                    </div>
 	                    <div class="row">
 	                        <div class="col text-right">
-	                            <button class="btn btn-outline-success">Submit</button>
+	                            <button class="btn btn-warning">Submit</button>
 	                        </div>
 	                    </div>
                     </form>

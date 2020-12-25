@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <title>TicketTracker</title>
 </head>
-<body style="background: #fbf5f3">
+<body>
 		<nav class="navbar navbar-dark bg-dark navbar-expand-sm justify-content-between">
   <a class="navbar-brand text-info" href="#">TicketTracker</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,21 +38,28 @@
             <div class="row"> 
                 <div class="col">    
                     <div class="row">
-                        <table id="d-table" class="table table-striped table-bordered">
+                        <table id="d-table" class="table table-striped table-bordered ">
                             <thead class="thead-dark">
                                 <th>Issues</th>
                                 <th>Ticket#</th>
 	                            <th>Assignee</th>
 								<th>Severity</th>
+								<th>Actions</th>
                             </thead>
                              <tbody>
                             	<c:forEach items="${tickets}" var="ticket">
                     			
                     			<tr>
 	                            	<td><a href="/tickets/${ticket.id}">${ticket.name}</a></td>
- 	                        		<td>${ticket.number}</td>
+ 	                        		<td>${ticket.id}</td>
 									<td>${ticket.assignee.firstName} ${ticket.assignee.lastName}</td>
 									<td>${ticket.severityType}</td> 
+									<td>
+									<a class="btn btn-outline-primary btn-sm" href="/tickets/${ticket.id}/edit">Edit</a> 
+									<form action="/tickets/${ticket.id}/delete" method="post">
+										<button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+									</form>
+									</td>
 	                        	</tr>
                     			
                     			</c:forEach>
