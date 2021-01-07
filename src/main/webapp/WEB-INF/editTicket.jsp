@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="row my-2">
-                        <h1>Edit Issue</h1>
+                        <h1>Edit Issue: ${ticket.id}</h1>
                     </div>
                     <form:form action="/tickets/${ticket.id}/update" method="post" modelAttribute="ticket">
 	                    <div class="row my-2">
@@ -49,16 +49,25 @@
 	                    </div>
 	                    <div class="row my-2">
 	                        <div class="col-6">Status</div>
-	                        	<form:select path="status" class="col-3" type="text">
-	                        	<c:forEach items="${status}" var="status">
+	                        	<!-- <form:select path="status" class="col-3" type="text">
+	                        	<c:forEach items="${statuses}" var="status">
 	                        		<option value="${status}"><c:out value="${status}"/></option>
-	                        	</c:forEach>
-	                            </form:select>
+								   </c:forEach>
+								</form:select> -->
+								<form:select path="status" class="col-2" name="" id="">
+								   <c:forEach items="${statuses}" var="status">
+									   <option value="${status}">
+										   <c:if test="${ticket.status.equals(status)}">
+											   <c:out value="${status}"/>
+											</c:if>
+										</option>
+								   </c:forEach>
+								</form:select>
 	                    </div>
 	                    <div class="row my-2">
 	                        <div class="col-6">Severity Type</div>
 	                        	<form:select path="severityType" class="col-3" type="text">
-	                        	<c:forEach items="${severityType}" var="severityType">
+	                        	<c:forEach items="${severityTypes}" var="severityType">
 	                        		<option value="${severityType}"><c:out value="${severityType}"/></option>
 	                        	</c:forEach>
 	                            </form:select>
