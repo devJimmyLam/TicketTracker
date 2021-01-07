@@ -76,6 +76,9 @@ public class Ticket {
         this.updatedAt = new Date();
     }
     
+    //TODO: need type list so drop down menu can function
+    //private List<SeverityType> types = new ArrayList<SeverityType>();
+    //private List<Status> stats = new ArrayList<Status>();
     
     //entering date for ticket as string
     public String getDueDateString() {

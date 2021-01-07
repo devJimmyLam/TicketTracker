@@ -49,33 +49,23 @@
 	                    </div>
 	                    <div class="row my-2">
 	                        <div class="col-6">Status</div>
-	                        	<!-- <form:select path="status" class="col-3" type="text">
-	                        	<c:forEach items="${statuses}" var="status">
+ 	                        	<form:select path="status" class="col-3" type="text">
+	                        	<c:forEach items="${status}" var="status">
 	                        		<option value="${status}"><c:out value="${status}"/></option>
-								   </c:forEach>
-								</form:select> -->
-								<form:select path="status" class="col-2" name="" id="">
-								   <c:forEach items="${statuses}" var="status">
-									   <option value="${status}"
-										   <c:if test="${ticket.status.equals(status)}">
-										   selected
-										   </c:if>>
-												<c:out value="${status}"/>
-										</option>
 								   </c:forEach>
 								</form:select>
 	                    </div>
 	                    <div class="row my-2">
 	                        <div class="col-6">Severity Type</div>
 	                        	<form:select path="severityType" class="col-3" type="text">
-	                        	<c:forEach items="${severityTypes}" var="severityType">
+	                        	<c:forEach items="${severityType}" var="severityType">
 	                        		<option value="${severityType}"><c:out value="${severityType}"/></option>
 	                        	</c:forEach>
 	                            </form:select>
 	                    </div>
 	                  	<div class="row my-2">
 	                        <div class="col-6">Due Date:</div>
-	                        	<form:input path="dueDate" type="date" class="col-6"  value="${dueDate}"/>
+	                        	<form:input path="dueDate" type="datetime-local" class="col-6"  value="${ticket.dueDate}"/>
 	                    </div>
 	                    
 						<div class="row my-2">

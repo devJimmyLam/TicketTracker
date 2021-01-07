@@ -168,7 +168,7 @@ public class MainController {
 		}
 	}
 	
-	@GetMapping("/tickets/{id}/edit")
+	@RequestMapping("/tickets/{id}/edit")
 	public String showEditTicketPage(@PathVariable("id") Long ticketId,Model model, HttpSession session, @ModelAttribute("ticket") Ticket editTicket) {
 		Long userId = (Long) session.getAttribute("userId");
 		User user = userService.findUserById(userId);
@@ -176,10 +176,20 @@ public class MainController {
 			model.addAttribute("user", user);
     		List<User> assignee = userService.findAllUsers();
     		model.addAttribute("assignees", assignee);
-			model.addAttribute("severityType", SeverityType.severityType);
-			model.addAttribute("status", Status.status);
+			
+//    		//TODO: render a dropdown menu of severityType
+//          //List<SeverityType> types  = ticketService.findBySeverityType(severityType);
+//          //model.addAttribute("severityType", types);
+    		model.addAttribute("severityType", SeverityType.severityType);
+    		
+            //TODO: render a dropdown menu of status
+//          //List<Status> stat  = ticketService.findByStatus(stat);
+//          //model.addAttribute("status", stat);
+			model.addAttribute("statuses", Status.status);
+			
+			
+			
 			Ticket ticket = ticketService.findTicketById(ticketId);
-			model.addAttribute("ticketId", ticket.getId());
 			model.addAttribute("name", ticket.getName());
 			model.addAttribute("severity", ticket.getSeverityType());
 			model.addAttribute("status", ticket.getStatus());
@@ -198,11 +208,11 @@ public class MainController {
 		Ticket ticket = ticketService.findTicketById(ticketId);
 		if(result.hasErrors()) {
 			model.addAttribute("ticketId", ticket.getId());
-			model.addAttribute("names", ticket.getName());
-			model.addAttribute("severitys", ticket.getSeverityType());
-			model.addAttribute("statuses", ticket.getStatus());
-			model.addAttribute("dueDates", ticket.getDueDateString());
-			model.addAttribute("descriptions", ticket.getDescription());
+			model.addAttribute("name", ticket.getName());
+			model.addAttribute("severityType", ticket.getSeverityType());
+			model.addAttribute("status", ticket.getStatus());
+			model.addAttribute("dueDate", ticket.getDueDateString());
+			model.addAttribute("description", ticket.getDescription());
 			return "editTicket.jsp";
 		}else {
 			ticket.setId(editTicket.getId());

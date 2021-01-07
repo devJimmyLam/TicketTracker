@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tickettracker.main.models.SeverityType;
+import com.tickettracker.main.models.Status;
 import com.tickettracker.main.models.Ticket;
 import com.tickettracker.main.repositories.TicketRepository;
 
@@ -17,12 +19,16 @@ public class TicketService {
 	public List<Ticket> findAllTickets(){
 		return ticketRepo.findAll();
 	}
-	public List<Ticket> findTicketBySeverityType(String severityType){
-		return ticketRepo.findBySeverityType(severityType);
+	
+	
+	//TODO:need type list below for drop down menu to function
+	public List<SeverityType> findBySeverityType(String severityType){
+		return ticketRepo.findTicketBySeverityType(severityType);
 	}
-	public List<Ticket> findTicketByStatus(String status){
-		return ticketRepo.findByStatus(status);
+	public List<Status> findByStatus(String status){
+		return ticketRepo.findTicketByStatus(status);
 	}
+	
 	//Allow users to create a ticket but the ticket number is done by the server. 
 	//The first creator in the DB has a ticket number of 000001. Increment by 1 every time a new creator is added.
 	public Ticket createTicket(Ticket ticket) {
