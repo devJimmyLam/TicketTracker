@@ -56,10 +56,11 @@
 								</form:select> -->
 								<form:select path="status" class="col-2" name="" id="">
 								   <c:forEach items="${statuses}" var="status">
-									   <option value="${status}">
+									   <option value="${status}"
 										   <c:if test="${ticket.status.equals(status)}">
-											   <c:out value="${status}"/>
-											</c:if>
+										   selected
+										   </c:if>>
+												<c:out value="${status}"/>
 										</option>
 								   </c:forEach>
 								</form:select>
