@@ -40,7 +40,7 @@
  <div class="container">
             <header>
                  <div class="row justify-content-between">
-                    <h1>Ticket# :<c:out value="${ticket.number}"/></h1>
+                    <h1>Ticket# :<c:out value="${ticket.id}"/></h1>
                 </div>
             </header>
             <div class="row justify-content-between">

@@ -45,7 +45,7 @@
                     <form:form action="/tickets/${ticket.id}/update" method="post" modelAttribute="ticket">
 	                    <div class="row my-2">
 	                    		<div class="col-6">Issue Name:</div>
-	                       		 <form:input path="name" class="col-6" type="text" value="${ticket.name}"/>
+	                       		 <form:input path="name" class="col-6" type="text" value="${name}"/>
 	                    </div>
 	                    <div class="row my-2">
 	                        <div class="col-6">Status</div>
@@ -65,7 +65,7 @@
 	                    </div>
 	                  	<div class="row my-2">
 	                        <div class="col-6">Due Date:</div>
-	                        	<form:input path="dueDate" type="date" class="col-6"  value="${ticket.dueDate}"/>
+	                        	<form:input path="dueDate" type="date" class="col-6"  value="${dueDate}"/>
 	                    </div>
 	                    
 						<div class="row my-2">
@@ -79,7 +79,7 @@
 	                    
 						<div class="row my-2">
 	                        <div class="col-6">Description:</div>
-	                        	<form:input path="description" type="text" class="col-6"  value="${ticket.description}"/>
+	                        	<form:input path="description" type="text" class="col-6"  value="${description}"/>
 	                        	<form:errors class="text-danger" path="description"/>
 	                    </div>
 	                    

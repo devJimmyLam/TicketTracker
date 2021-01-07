@@ -1,5 +1,7 @@
 package com.tickettracker.main.models;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -72,6 +74,13 @@ public class Ticket {
     @PreUpdate
     protected void onUpdate(){
         this.updatedAt = new Date();
+    }
+    
+    
+    //entering date for ticket as string
+    public String getDueDateString() {
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
+    	return dateFormat.format(this.getDueDate());
     }
 
 	public Long getId() {

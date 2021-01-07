@@ -179,11 +179,11 @@ public class MainController {
 			model.addAttribute("severityType", SeverityType.severityType);
 			model.addAttribute("status", Status.status);
 			Ticket ticket = ticketService.findTicketById(ticketId);
-			model.addAttribute("ticketNumber", ticket.getNumber());
+			model.addAttribute("ticketId", ticket.getId());
 			model.addAttribute("name", ticket.getName());
 			model.addAttribute("severity", ticket.getSeverityType());
 			model.addAttribute("status", ticket.getStatus());
-			model.addAttribute("dueDate", ticket.getDueDate());
+			model.addAttribute("dueDate", ticket.getDueDateString());
 			model.addAttribute("description", ticket.getDescription());
 			return "editTicket.jsp";
 		}else {
@@ -197,15 +197,15 @@ public class MainController {
 		User user = userService.findUserById(userId);
 		Ticket ticket = ticketService.findTicketById(ticketId);
 		if(result.hasErrors()) {
-			model.addAttribute("ticketNumber", ticket.getNumber());
+			model.addAttribute("ticketId", ticket.getId());
 			model.addAttribute("name", ticket.getName());
 			model.addAttribute("severity", ticket.getSeverityType());
 			model.addAttribute("status", ticket.getStatus());
-			model.addAttribute("dueDate", ticket.getDueDate());
+			model.addAttribute("dueDate", ticket.getDueDateString());
 			model.addAttribute("description", ticket.getDescription());
 			return "editTicket.jsp";
 		}else {
-			ticket.setNumber(editTicket.getNumber());
+			ticket.setId(editTicket.getId());
 			ticket.setName(editTicket.getName());
 			ticket.setStatus(editTicket.getStatus());
 			ticket.setSeverityType(editTicket.getSeverityType());
