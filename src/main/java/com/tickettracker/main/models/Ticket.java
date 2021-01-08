@@ -65,6 +65,13 @@ public class Ticket {
     public Ticket() {
     	
     }
+//    TODO: need ticket constructor for search parameters to work.
+    public Ticket(User creator, User assignee, String severityType, String status) {
+    	this.creator = creator;
+    	this.assignee = assignee;
+    	this.severityType = severityType;
+    	this.status = status;
+    }
     
     @PrePersist
     protected void onCreate(){

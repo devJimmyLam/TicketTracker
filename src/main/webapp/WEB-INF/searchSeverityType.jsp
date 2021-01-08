@@ -34,25 +34,19 @@
     </form>
   </div>
 </nav>
-	<div class="container">
-            <div class="row"> 
-                <div class="col">  
-  
-                    <div class="row">
+<div class="container">
+            <div class="row my-2 justify-content-center">
+                <div class="col-6">
+                    <h3>Tickets by Severity Type: <c:out value="${query}" /> </h3>
+                </div>
+            </div>
+            <div class="row">
                         <table id="created-table" class="table table-striped table-bordered ">
-                        	<thead class="thead-dark">
-                        		<th><h3>CREATED TICKETS</h3></th>
-                                <th></th>
-	                            <th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-                        	</thead>
                             <thead class="thead-dark">
+                            	<th>Severity:</th>
                                 <th>Issues:</th>
                                 <th>Ticket#:</th>
 	                            <th>Assignee:</th>
-								<th>Severity:</th>
 								<th>Status:</th>
 								<th>Actions:</th>
                             </thead>
@@ -62,16 +56,30 @@
                     			<tr>
                     			<!-- TODO: if ticket creator id is = to loggedin user-->
                     				<c:if test="${ticket.userIsCreator(user)}">
+                    					<td>${ticket.severityType}</td>
 	                            		<td><a href="/tickets/${ticket.id}">${ticket.name}</a></td>
  	                        			<td>${ticket.id}</td>
 										<td>${ticket.assignee.firstName} ${ticket.assignee.lastName}</td>
-										<td>${ticket.severityType}</td>
+
 										<td>${ticket.status}</td> 
 										<td>
 										<a class="btn btn-outline-primary btn-sm" href="/tickets/${ticket.id}/edit">Edit</a> 
 										<form action="/tickets/${ticket.id}/delete" method="post">
+											<input type="hidden" name="_method" value="delete">
 											<button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
 										</form>
+										
+										<c:if test="${ticket.userIsAssignee(user)}">
+											<td>${ticket.severityType}</td>
+											<td><a href="/tickets/${ticket.id}">${ticket.name}</a></td>
+ 	                        				<td>${ticket.id}</td>
+											<td>${ticket.creator.firstName} ${ticket.creator.lastName}</td>
+											<td>${ticket.severityType}</td>
+											<td>${ticket.status}</td>  
+											<td>
+												<a class="btn btn-outline-primary btn-sm" href="/tickets/${ticket.id}/edit">Edit</a> 
+											</td>
+										</c:if>
 									</c:if>
 									
 									</td>
@@ -81,51 +89,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-             <div class="row"> 
-                <div class="col"> 
-                    <div class="row">
-                        <table id="assigned-table" class="table table-striped table-bordered ">
-                            <thead class="thead-dark">
-                        		<th><h3>ASSIGNED TICKETS</h3></th>
-                                <th></th>
-	                            <th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-                        	</thead>
-                            <thead class="thead-dark">
-                                <th>Issues:</th>
-                                <th>Ticket#:</th>
-	                            <th>Created By:</th>
-								<th>Severity:</th>
-								<th>Status:</th>
-								<th>Actions:</th>
-                            </thead>
-                             <tbody>
-                            	<c:forEach items="${tickets}" var="ticket">
-                            	<!-- TODO: create if statement if user is creator then they can edit their own tickets-->
-                    			<tr>
-                    			<c:if test="${ticket.userIsAssignee(user)}">
-	                            	<td><a href="/tickets/${ticket.id}">${ticket.name}</a></td>
- 	                        		<td>${ticket.id}</td>
-									<td>${ticket.creator.firstName} ${ticket.creator.lastName}</td>
-									<td>${ticket.severityType}</td>
-									<td>${ticket.status}</td>  
-									<td>
-									<a class="btn btn-outline-primary btn-sm" href="/tickets/${ticket.id}/edit">Edit</a> 
-									</td>
-								</c:if>
-	                        	</tr>
-                    			
-                    			</c:forEach>
-                            
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-	</div>
+        </div>
+
 </body>
 </html>

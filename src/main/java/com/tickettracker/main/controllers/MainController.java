@@ -233,6 +233,9 @@ public class MainController {
 			return "redirect:/tickets";
 	}
 
+	
+	
+	
 	//////////
 	//Messages Controller methods
 	//////////
@@ -260,5 +263,18 @@ public class MainController {
 		}
 	}
 
- 
+	
+	//////////
+	//Search  methods
+	//////////
+	@PostMapping("/tickets/search/{searchString}")
+	public String searchPage(@PathVariable("searchString") String search, Model model) {
+		List<Ticket> ticket = ticketService.findBySeverityType(search);
+		model.addAttribute("tickets", ticket);
+		System.out.println("enter search");
+		model.addAttribute("query", search);
+		System.out.println("searching database");
+		return "/tickets/searchSeverityType.jsp";
+		
+	}
 }

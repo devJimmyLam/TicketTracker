@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.tickettracker.main.models.SeverityType;
 import com.tickettracker.main.models.Status;
 import com.tickettracker.main.models.Ticket;
+import com.tickettracker.main.models.User;
 import com.tickettracker.main.repositories.TicketRepository;
 
 @Service
@@ -46,6 +47,23 @@ public class TicketService {
 		ticket.setNumber(ticketNumber);
 		return ticketRepo.save(ticket);
 	}
+	
+		//---------------------------------------------------------------------------------------------
+		//Find tickets containing input parameters
+		//---------------------------------------------------------------------------------------------
+		public List<Ticket> findByCreator(User searchString){
+			return ticketRepo.searchByCreator(searchString);
+		}
+		public List<Ticket> findByAssignee(User searchString){
+			return ticketRepo.searchByAssignee(searchString);
+		}
+		public List<Ticket> findBySeverityType(String searchString){
+			return ticketRepo.searchBySeverityType(searchString);
+		}
+		public List<Ticket> findByStatus(String searchString){
+			return ticketRepo.searchByStatus(searchString);
+		}
+	
 	
 	public Ticket findTicketById(Long id) {
 		Optional<Ticket> ticket = ticketRepo.findById(id);
