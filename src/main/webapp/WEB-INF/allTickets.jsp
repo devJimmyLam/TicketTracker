@@ -51,7 +51,7 @@
                             <thead class="thead-dark">
                                 <th>Issues:</th>
                                 <th>Ticket#:</th>
-	                            <th>Assignee:</th>
+	                            <th>Assigned To:</th>
 								<th>Severity:</th>
 								<th>Status:</th>
 								<th>Actions:</th>

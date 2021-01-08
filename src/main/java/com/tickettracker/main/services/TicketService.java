@@ -23,12 +23,12 @@ public class TicketService {
 	
 	
 	//TODO:need type list below for drop down menu to function
-//	public List<SeverityType> findBySeverityType(String severityType){
-//		return ticketRepo.findTicketBySeverityType(severityType);
-//	}
-//	public List<Status> findByStatus(String status){
-//		return ticketRepo.findTicketByStatus(status);
-//	}
+	public List<Ticket> findTicketsBySeverityType(String severityType){
+		return ticketRepo.findBySeverityType(severityType);
+	}
+	public List<Ticket> findTicketsByStatus(String status){
+		return ticketRepo.findByStatus(status);
+	}
 	
 	//Allow users to create a ticket but the ticket number is done by the server. 
 	//The first creator in the DB has a ticket number of 000001. Increment by 1 every time a new creator is added.

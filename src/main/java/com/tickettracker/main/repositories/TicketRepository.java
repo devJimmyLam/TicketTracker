@@ -16,8 +16,8 @@ public interface TicketRepository extends CrudRepository<Ticket, Long>{
 	List<Ticket> findAll();
 	
 	//TODO: need type list for drop down menu to function
-	List<SeverityType> findTicketBySeverityType(String severityType);
-	List<Status> findTicketByStatus(String status);
+	List<Ticket> findBySeverityType(String severityType);
+	List<Ticket> findByStatus(String status);
 	
 	//TODO: need methods below for search features
 	List<Ticket>findByCreatorContaining(User searchString);

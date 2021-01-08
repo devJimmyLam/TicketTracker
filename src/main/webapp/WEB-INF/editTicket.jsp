@@ -58,11 +58,20 @@
 	                    <div class="row my-2">
 	                        <div class="col-6">Severity Type</div>
 	                        	<form:select path="severityType" class="col-3" type="text">
-	                        	<c:forEach items="${severityType}" var="severityType">
-	                        		<option value="${severityType}"><c:out value="${severityType}"/></option>
-	                        	</c:forEach>
+	                        		
+	                        		<c:forEach items="${severityType}" var="severityType">
+	                        			<c:choose>
+	                        				<c:when test="${ticket.severityType == severityType}">
+	                        					<option value="${severityType}" selected><c:out value="${severityType}"/></option>
+	                        				</c:when>
+	                        				<c:otherwise>
+	                        					<option value="${severityType}"><c:out value="${severityType}"/></option>
+	                        				</c:otherwise>
+	                        			</c:choose>
+	                        		</c:forEach>
+	                        		
 	                            </form:select>
-	                    </div>
+	                    	</div>
 	                  	<div class="row my-2">
 	                        <div class="col-6">Due Date:</div>
 	                        	<form:input path="dueDate" type="datetime-local" class="col-6"  value="${ticket.dueDate}"/>

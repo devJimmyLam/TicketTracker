@@ -178,8 +178,8 @@ public class MainController {
     		model.addAttribute("assignees", assignee);
 			
 //    		//TODO: render a dropdown menu of severityType
-//    		List<SeverityType> severityType  = ticketService.findBySeverityType();
-//    		model.addAttribute("severityTypes", severityType);
+//    		List<Ticket> severityType  = ticketService.findTicketsBySeverityType(severityType);
+//    		model.addAttribute("severityType", severityType);
     		model.addAttribute("severityType", SeverityType.severityType);
     		
             //TODO: render a dropdown menu of status
@@ -193,7 +193,7 @@ public class MainController {
 			model.addAttribute("name", ticket.getName());
 			model.addAttribute("severity", ticket.getSeverityType());
 			model.addAttribute("status", ticket.getStatus());
-			model.addAttribute("dueDate", ticket.getDueDateString());
+			model.addAttribute("dueDate", ticket.getDueDate());
 			model.addAttribute("description", ticket.getDescription());
 			return "editTicket.jsp";
 		}else {
@@ -211,7 +211,7 @@ public class MainController {
 			model.addAttribute("name", ticket.getName());
 			model.addAttribute("severityType", ticket.getSeverityType());
 			model.addAttribute("status", ticket.getStatus());
-			model.addAttribute("dueDate", ticket.getDueDateString());
+			model.addAttribute("dueDate", ticket.getDueDate());
 			model.addAttribute("description", ticket.getDescription());
 			return "editTicket.jsp";
 		}else {

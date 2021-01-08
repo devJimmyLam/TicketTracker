@@ -87,11 +87,11 @@ public class Ticket {
 //    private List<SeverityType> severityTypes = new ArrayList<SeverityType>();
 //    private List<Status> statuses = new ArrayList<Status>();
    
-    //entering date for ticket as string
-    public String getDueDateString() {
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
-    	return dateFormat.format(this.getDueDate());
-    }
+    //TODO:entering date for ticket as string
+//    public String getDueDateString() {
+//    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+//    	return dateFormat.format(this.getDueDate());
+//    }
     
     //check if user is creator
     public boolean userIsCreator(User user) {
