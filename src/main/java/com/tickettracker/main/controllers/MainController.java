@@ -178,13 +178,13 @@ public class MainController {
     		model.addAttribute("assignees", assignee);
 			
 //    		//TODO: render a dropdown menu of severityType
-//          //List<SeverityType> types  = ticketService.findBySeverityType(severityType);
-//          //model.addAttribute("severityType", types);
+//    		List<SeverityType> severityType  = ticketService.findBySeverityType();
+//    		model.addAttribute("severityTypes", severityType);
     		model.addAttribute("severityType", SeverityType.severityType);
     		
             //TODO: render a dropdown menu of status
-//          //List<Status> stat  = ticketService.findByStatus(stat);
-//          //model.addAttribute("status", stat);
+//    		List<Status> status  = ticketService.findByStatus();
+//          model.addAttribute("statuses", status);
 			model.addAttribute("statuses", Status.status);
 			
 			

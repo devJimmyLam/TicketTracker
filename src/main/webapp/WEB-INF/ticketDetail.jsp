@@ -27,7 +27,7 @@
         <a class="nav-link" href="/tickets">Dashboard</a>
       </li>
       <li class="nav-item">
-<a class="nav-link" href="/logout">Logout,<c:out value="${user.firstName}"/></a>
+<a class="nav-link" href="/logout">Logout(<c:out value="${user.firstName}"/>)</a>
       </li>
     </ul>
     <a class="btn btn-outline-success my-2 my-sm-0" href="/tickets/${ticket.id}/edit" type="btn">Edit Ticket</a>
@@ -78,13 +78,13 @@
                         <div style="overflow-y: scroll; height: 300px;" class="container border border-dark">
                             <c:forEach items="${ticket.messages}" var="message">
                             	<p>Sent:<c:out value="${message.createdAt}"/></p>
-	                            <p><c:out value="${message.user.firstName} ${message.user.lastName}"/> says: <c:out value="${message.message}"/></p>
+	                            <p><c:out value="${message.user.firstName} ${message.user.lastName}"/> : <c:out value="${message.message}"/></p>
 	                            <p>-----------------------------------</p>
                             </c:forEach>
                         </div>
                     </div>
                     <div class="row my-2">
-                        Send:
+                        Post a Message.
                     </div>
                     <form action="/tickets/${ticket.id}/message" method="POST"> 
 	                    <div class="row my-2">

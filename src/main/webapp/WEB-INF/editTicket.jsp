@@ -27,7 +27,7 @@
         <a class="nav-link" href="/tickets">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout,<c:out value="${user.firstName}"/></a>
+        <a class="nav-link" href="/logout">Logout(<c:out value="${user.firstName}"/>)</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" action="/ticket/search" method="GET">
@@ -50,7 +50,7 @@
 	                    <div class="row my-2">
 	                        <div class="col-6">Status</div>
  	                        	<form:select path="status" class="col-3" type="text">
-	                        	<c:forEach items="${status}" var="status">
+	                        	<c:forEach items="${statuses}" var="status">
 	                        		<option value="${status}"><c:out value="${status}"/></option>
 								   </c:forEach>
 								</form:select>

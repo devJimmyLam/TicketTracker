@@ -27,7 +27,7 @@
         <a class="nav-link" href="/tickets">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout,<c:out value="${user.firstName}"/></a>
+        <a class="nav-link" href="/logout">Logout(<c:out value="${user.firstName}"/>)</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" action="/ticket/search" method="GET">

@@ -18,4 +18,6 @@ public interface TicketRepository extends CrudRepository<Ticket, Long>{
 	List<SeverityType> findTicketBySeverityType(String severityType);
 	List<Status> findTicketByStatus(String status);
 
+
+
 }

@@ -66,8 +66,14 @@ body {
     margin-left: 175px;
 }
 
-#d-table{
+#created-table{
 	background-color: #f9de9d;
+		padding: 20px;
+	margin-top: 100px;
+}
+
+#assigned-table{
+	background-color: #a8dadc;
 		padding: 20px;
 	margin-top: 100px;
 }

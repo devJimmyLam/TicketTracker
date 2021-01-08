@@ -77,13 +77,31 @@ public class Ticket {
     }
     
     //TODO: need type list so drop down menu can function
-    //private List<SeverityType> types = new ArrayList<SeverityType>();
-    //private List<Status> stats = new ArrayList<Status>();
-    
+//    private List<SeverityType> severityTypes = new ArrayList<SeverityType>();
+//    private List<Status> statuses = new ArrayList<Status>();
+   
     //entering date for ticket as string
     public String getDueDateString() {
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
     	return dateFormat.format(this.getDueDate());
+    }
+    
+    //check if user is creator
+    public boolean userIsCreator(User user) {
+    	if(this.creator == user) {
+    		return true;
+    	}else {
+    		return false;
+    	}
+    }
+    
+    //check if user is assignee
+    public boolean userIsAssignee(User user) {
+    	if(this.assignee == user) {
+    		return true;
+    	}else {
+    		return false;
+    	}
     }
 
 	public Long getId() {
