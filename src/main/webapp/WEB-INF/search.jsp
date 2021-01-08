@@ -23,15 +23,18 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+           <li class="nav-item">
+        <a class="nav-link" href="/tickets">Dashboard</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="/logout">Logout(<c:out value="${user.firstName}"/>)</a>
       </li>
     </ul>
     <a class="btn btn-outline-success my-2 my-sm-0" href="/tickets/new" type="btn">New Ticket</a>
-    <form class="form-inline my-2 my-lg-0" action="/ticket/search" method="POST">
+    <form class="form-inline my-2 my-lg-0" action="/tickets/search" method="post">
       <input class="form-control mr-sm-2" type="text" name="searchString"placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">New Search</button>
+     </form>
   </div>
 </nav>
 <div class="container">
@@ -40,13 +43,21 @@
                     <h3>Tickets by Severity Type: <c:out value="${query}" /> </h3>
                 </div>
             </div>
-            <div class="row">
-                        <table id="created-table" class="table table-striped table-bordered ">
+                    <div class="row">
+                        <table  class="table table-striped table-bordered ">
+                        	<thead class="thead-dark">
+                        		<th><h3>CREATED TICKETS</h3></th>
+                                <th></th>
+	                            <th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+                        	</thead>
                             <thead class="thead-dark">
-                            	<th>Severity:</th>
                                 <th>Issues:</th>
                                 <th>Ticket#:</th>
 	                            <th>Assignee:</th>
+								<th>Severity:</th>
 								<th>Status:</th>
 								<th>Actions:</th>
                             </thead>
@@ -56,30 +67,16 @@
                     			<tr>
                     			<!-- TODO: if ticket creator id is = to loggedin user-->
                     				<c:if test="${ticket.userIsCreator(user)}">
-                    					<td>${ticket.severityType}</td>
 	                            		<td><a href="/tickets/${ticket.id}">${ticket.name}</a></td>
  	                        			<td>${ticket.id}</td>
 										<td>${ticket.assignee.firstName} ${ticket.assignee.lastName}</td>
-
+										<td>${ticket.severityType}</td>
 										<td>${ticket.status}</td> 
 										<td>
 										<a class="btn btn-outline-primary btn-sm" href="/tickets/${ticket.id}/edit">Edit</a> 
 										<form action="/tickets/${ticket.id}/delete" method="post">
-											<input type="hidden" name="_method" value="delete">
 											<button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
 										</form>
-										
-										<c:if test="${ticket.userIsAssignee(user)}">
-											<td>${ticket.severityType}</td>
-											<td><a href="/tickets/${ticket.id}">${ticket.name}</a></td>
- 	                        				<td>${ticket.id}</td>
-											<td>${ticket.creator.firstName} ${ticket.creator.lastName}</td>
-											<td>${ticket.severityType}</td>
-											<td>${ticket.status}</td>  
-											<td>
-												<a class="btn btn-outline-primary btn-sm" href="/tickets/${ticket.id}/edit">Edit</a> 
-											</td>
-										</c:if>
 									</c:if>
 									
 									</td>
@@ -89,7 +86,47 @@
                             </tbody>
                         </table>
                     </div>
-        </div>
+                    <div class="row">
+                        <table  class="table table-striped table-bordered ">
+                            <thead class="thead-dark">
+                        		<th><h3>ASSIGNED TICKETS</h3></th>
+                                <th></th>
+	                            <th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+                        	</thead>
+                            <thead class="thead-dark">
+                                <th>Issues:</th>
+                                <th>Ticket#:</th>
+	                            <th>Created By:</th>
+								<th>Severity:</th>
+								<th>Status:</th>
+								<th>Actions:</th>
+                            </thead>
+                             <tbody>
+                            	<c:forEach items="${tickets}" var="ticket">
+                            	<!-- TODO: create if statement if user is creator then they can edit their own tickets-->
+                    			<tr>
+                    			<c:if test="${ticket.userIsAssignee(user)}">
+	                            	<td><a href="/tickets/${ticket.id}">${ticket.name}</a></td>
+ 	                        		<td>${ticket.id}</td>
+									<td>${ticket.creator.firstName} ${ticket.creator.lastName}</td>
+									<td>${ticket.severityType}</td>
+									<td>${ticket.status}</td>  
+									<td>
+									<a class="btn btn-outline-primary btn-sm" href="/tickets/${ticket.id}/edit">Edit</a> 
+									</td>
+								</c:if>
+	                        	</tr>
+                    			
+                    			</c:forEach>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+            
+ </div>
 
 </body>
 </html>

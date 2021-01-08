@@ -28,7 +28,7 @@
       </li>
     </ul>
     <a class="btn btn-outline-success my-2 my-sm-0" href="/tickets/new" type="btn">New Ticket</a>
-    <form class="form-inline my-2 my-lg-0" action="/ticket/search" method="POST">
+    <form class="form-inline my-2 my-lg-0" action="/tickets/search" method="POST">
       <input class="form-control mr-sm-2" type="text" name="searchString"placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
     </form>

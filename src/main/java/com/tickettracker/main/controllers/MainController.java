@@ -267,14 +267,29 @@ public class MainController {
 	//////////
 	//Search  methods
 	//////////
-	@PostMapping("/tickets/search/{searchString}")
-	public String searchPage(@PathVariable("searchString") String search, Model model) {
-		List<Ticket> ticket = ticketService.findBySeverityType(search);
-		model.addAttribute("tickets", ticket);
-		System.out.println("enter search");
-		model.addAttribute("query", search);
-		System.out.println("searching database");
-		return "/tickets/searchSeverityType.jsp";
+	//get to show all tickets and search
+	@RequestMapping("/tickets/search/{searchString}")
+	public String searchSeverity(@PathVariable("searchString") String search, HttpSession session, Model model) {
+		Long userId = (Long) session.getAttribute("userId");
+		if(userId != null) {
+			User user = userService.findUserById((Long) session.getAttribute("userId"));
+			model.addAttribute("user", user);
+			//search for ticket
+			List<Ticket> tickets = ticketService.findBySeverityType(search);
+			model.addAttribute("tickets", tickets);
+			System.out.println("enter search");
 		
+			model.addAttribute("query", search);
+			System.out.println("searching database");
+			return "search.jsp";
+		}else {
+			return "redirect:/welcome";
+		}
+		
+	}
+	//post to redirect to render search results
+	@PostMapping("/tickets/search")
+	public String doSearch(@RequestParam(value="searchString") String searchString) {
+		return "redirect:/tickets/search/"+searchString;
 	}
 }

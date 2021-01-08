@@ -20,10 +20,10 @@ public interface TicketRepository extends CrudRepository<Ticket, Long>{
 	List<Status> findTicketByStatus(String status);
 	
 	//TODO: need methods below for search features
-	List<Ticket> searchByCreator(User searchString);
-	List<Ticket> searchByAssignee(User searchString);
-	List<Ticket> searchBySeverityType(String searchString);
-	List<Ticket> searchByStatus(String searchString);
+	List<Ticket>findByCreatorContaining(User searchString);
+	List<Ticket>findByAssigneeContaining(User searchString);
+	List<Ticket>findBySeverityTypeContaining(String searchString);
+	List<Ticket>findByStatusContaining(String searchString);
 	
 
 

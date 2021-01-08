@@ -52,16 +52,16 @@ public class TicketService {
 		//Find tickets containing input parameters
 		//---------------------------------------------------------------------------------------------
 		public List<Ticket> findByCreator(User searchString){
-			return ticketRepo.searchByCreator(searchString);
+			return ticketRepo.findByCreatorContaining(searchString);
 		}
 		public List<Ticket> findByAssignee(User searchString){
-			return ticketRepo.searchByAssignee(searchString);
+			return ticketRepo.findByAssigneeContaining(searchString);
 		}
 		public List<Ticket> findBySeverityType(String searchString){
-			return ticketRepo.searchBySeverityType(searchString);
+			return ticketRepo.findBySeverityTypeContaining(searchString);
 		}
 		public List<Ticket> findByStatus(String searchString){
-			return ticketRepo.searchByStatus(searchString);
+			return ticketRepo.findByStatusContaining(searchString);
 		}
 	
 	
