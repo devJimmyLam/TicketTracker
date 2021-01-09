@@ -16,7 +16,7 @@ TicketTracker is a ticketing tool that processes and catalogs users issue reques
 ## Technology Used 
 - Engineered using React.js and Java Spring Boot to create RESTful API Controller.
 - Integrated Jbcrypt passwords hashing to enhance user authentication and registration.
-- Integrated HTML5, CSS, SASS and Materialize-UI to add mobile and desktop responsiveness.
+- Integrated HTML5, CSS3/SASS and BootStrap to add mobile and desktop responsiveness.
 
 
 ## Getting Started
@@ -64,7 +64,8 @@ That's it! You're connected now; if you try and start your project, it will thro
 ## Built With
 * Front-End
   * [React.js](https://reactjs.org/)
-  * [Materialized-UI](https://material-ui.com/getting-started/installation/)
+  * [SASS](https://sass-lang.com/)
+  * [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 * Back-End
   * [Java](https://www.oracle.com/java/technologies/)
 * Testing

@@ -58,8 +58,12 @@
 	                    <div class="row my-2">
 	                        <div class="col-6">Severity Type</div>
 	                        	<form:select path="severityType" class="col-3" type="text">
-	                        		
 	                        		<c:forEach items="${severityType}" var="severityType">
+	                        			<form:option value="${severityType}"><c:out value ="${severityType} ${severityType}"/></form:option>
+	                        		</c:forEach>
+<%-- 	                        	TODO:need if else statement to have a drop down menu of list of severity type. 
+										below is a choose otherwise statment which is better formatted for a default value to render.	
+									<c:forEach items="${severityType}" var="severityType">
 	                        			<c:choose>
 	                        				<c:when test="${ticket.severityType == severityType}">
 	                        					<option value="${severityType}" selected><c:out value="${severityType}"/></option>
@@ -68,7 +72,7 @@
 	                        					<option value="${severityType}"><c:out value="${severityType}"/></option>
 	                        				</c:otherwise>
 	                        			</c:choose>
-	                        		</c:forEach>
+	                        		</c:forEach> --%>
 	                        		
 	                            </form:select>
 	                    	</div>
