@@ -22,7 +22,6 @@ import com.tickettracker.main.models.Status;
 import com.tickettracker.main.models.Ticket;
 import com.tickettracker.main.models.User;
 import com.tickettracker.main.services.MessageService;
-import com.tickettracker.main.services.SeverityTypeService;
 import com.tickettracker.main.services.TicketService;
 import com.tickettracker.main.services.UserService;
 import com.tickettracker.main.validators.UserValidator;
@@ -33,14 +32,13 @@ public class MainController {
 	private final UserValidator userValidator;
 	private final UserService userService;
 	private final TicketService ticketService;
-	private final SeverityTypeService severityTypeService;
+
 	private final MessageService messageService;
 	
-	public MainController(MessageService messageService, TicketService ticketService, UserService userService, SeverityTypeService severityTypeService, UserValidator userValidator) {
+	public MainController(MessageService messageService, TicketService ticketService, UserService userService, UserValidator userValidator) {
 		this.userService = userService;
 		this.userValidator = userValidator;
 		this.ticketService = ticketService;
-		this.severityTypeService = severityTypeService;
 		this.messageService = messageService;
 	}
     @GetMapping("/welcome")
@@ -183,7 +181,9 @@ public class MainController {
 //    		//TODO: render a dropdown menu of severityType
     		
     		String createdSeverityType = editTicket.getSeverityType();
-    		model.addAttribute("createdServerityType", createdSeverityType);
+    		System.out.println(editTicket.getSeverityType());
+    		model.addAttribute("createdSeverityType", createdSeverityType);
+    		System.out.println(createdSeverityType);
 //    		List<SeverityType> severityType  = severityTypeService.findTicketsBySeverityType(severityType);	
 //    		model.addAttribute("severityType", severityType);
 //    		model.addAttribute("severityTypes", SeverityType.severityType);
