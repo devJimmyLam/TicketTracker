@@ -86,6 +86,7 @@ public class Ticket {
     //TODO: need type list so drop down menu can function
 //    private List<SeverityType> severityTypes = new ArrayList<SeverityType>();
 //    private List<Status> statuses = new ArrayList<Status>();
+    
    
     //TODO:entering date for ticket as string
 //    public String getDueDateString() {
