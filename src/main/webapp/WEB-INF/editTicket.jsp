@@ -49,21 +49,38 @@
 	                    </div>
 	                    <div class="row my-2">
 	                        <div class="col-6">Status</div>
- 	                        	<form:select path="status" class="col-3" type="text">
-	                        	<c:forEach items="${statuses}" var="status">
-	                        		<option value="${status}"><c:out value="${status}"/></option>
-								   </c:forEach>
-								</form:select>
+<%--  	                        	<form:select path="status" class="col-3" type="text">
+	                                   <c:forEach items="${statuses}" var="status">
+			                               <option value="${status}" <c:if test="${ticket.status.equals(status)}">selected</c:if>><c:out value="${status}"/></option>
+		                               </c:forEach>
+								</form:select> --%>
+								
+								<form:select path="status" class="col-3">
+									<c:forEach items="${statuses}" var="status">
+	                        			<c:choose>
+	                        				<c:when test="${ticket.status == status}">
+	                        					<option value="${status}" selected><c:out value="${status}"/></option>
+	                        				</c:when>
+	                        				<c:otherwise>
+	                        					<option value="${status}"><c:out value="${status}"/></option>
+	                        				</c:otherwise>
+	                        			</c:choose>
+	                        		</c:forEach>
+	                        	</form:select>
+	                            
 	                    </div>
 	                    <div class="row my-2">
 	                        <div class="col-6">Severity Type</div>
-	                        	<form:select path="severityType" class="col-3" type="text">
-	                        		<c:forEach items="${severityType}" var="severityType">
-	                        			<form:option value="${severityType}"><c:out value ="${severityType} ${severityType}"/></form:option>
-	                        		</c:forEach>
-<%-- 	                        	TODO:need if else statement to have a drop down menu of list of severity type. 
-										below is a choose otherwise statment which is better formatted for a default value to render.	
-									<c:forEach items="${severityType}" var="severityType">
+<%-- 	                        	<form:select path="severityType" class="col-3">
+	                                   <c:forEach items="${severityTypes}" var="severityType">
+			                               <option value="${severityType}" <c:if test="${ticket.severityType.equals(severityType)}">selected</c:if>><c:out value="${severityType}"/></option>
+		                               </c:forEach>
+	                            </form:select> --%>
+	                            
+<!-- 	                        	TODO:need if else statement to have a drop down menu of list of severity type. 
+										below is a choose otherwise statement which is better formatted for a default value to render.	 -->
+								<form:select path="severityType" class="col-3">
+									<c:forEach items="${severityTypes}" var="severityType">
 	                        			<c:choose>
 	                        				<c:when test="${ticket.severityType == severityType}">
 	                        					<option value="${severityType}" selected><c:out value="${severityType}"/></option>
@@ -72,13 +89,14 @@
 	                        					<option value="${severityType}"><c:out value="${severityType}"/></option>
 	                        				</c:otherwise>
 	                        			</c:choose>
-	                        		</c:forEach> --%>
-	                        		
-	                            </form:select>
+	                        		</c:forEach>
+	                        	</form:select>
+	                            
+	                            
 	                    	</div>
 	                  	<div class="row my-2">
 	                        <div class="col-6">Due Date:</div>
-	                        	<form:input path="dueDate" type="datetime-local" class="col-6"  value="${ticket.dueDate}"/>
+	                        	<form:input path="dueDate" type="date" class="col-6"  value="${ticket.dueDate}"/>
 	                    </div>
 	                    
 						<div class="row my-2">

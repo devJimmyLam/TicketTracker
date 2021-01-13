@@ -88,10 +88,10 @@ public class Ticket {
 //    private List<Status> statuses = new ArrayList<Status>();
    
     //TODO:entering date for ticket as string
-//    public String getDueDateString() {
-//    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
-//    	return dateFormat.format(this.getDueDate());
-//    }
+    public String getDueDateString() {
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+    	return dateFormat.format(this.getDueDate());
+    }
     
     //check if user is creator
     public boolean userIsCreator(User user) {

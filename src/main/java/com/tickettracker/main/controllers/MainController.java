@@ -180,14 +180,12 @@ public class MainController {
 //    		//TODO: render a dropdown menu of severityType
 //    		List<Ticket> severityType  = ticketService.findTicketsBySeverityType(severityType);
 //    		model.addAttribute("severityType", severityType);
-    		model.addAttribute("severityType", SeverityType.severityType);
+    		model.addAttribute("severityTypes", SeverityType.severityType);
     		
             //TODO: render a dropdown menu of status
 //    		List<Status> status  = ticketService.findByStatus();
 //          model.addAttribute("statuses", status);
 			model.addAttribute("statuses", Status.status);
-			
-			
 			
 			Ticket ticket = ticketService.findTicketById(ticketId);
 			model.addAttribute("name", ticket.getName());
@@ -287,9 +285,11 @@ public class MainController {
 		}
 		
 	}
+	
 	//post to redirect to render search results
 	@PostMapping("/tickets/search")
 	public String doSearch(@RequestParam(value="searchString") String searchString) {
 		return "redirect:/tickets/search/"+searchString;
 	}
+	
 }

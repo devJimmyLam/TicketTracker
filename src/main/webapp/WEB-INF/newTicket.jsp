@@ -67,7 +67,7 @@
 	                    </div>
 	                  	<div class="row my-2">
 	                        <div class="col-6">Due Date:</div>
-	                        	<form:input path="dueDate" type="datetime-local" class="col-6"/>
+	                        	<form:input path="dueDate" type="date" class="col-6"/>
 	                    </div>
 	                    
 						<div class="row my-2">
