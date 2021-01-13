@@ -32,6 +32,7 @@ public class MainController {
 	private final UserValidator userValidator;
 	private final UserService userService;
 	private final TicketService ticketService;
+
 	private final MessageService messageService;
 	
 	public MainController(MessageService messageService, TicketService ticketService, UserService userService, UserValidator userValidator) {
@@ -169,30 +170,22 @@ public class MainController {
 	}
 	
 	@RequestMapping("/tickets/{id}/edit")
-	public String showEditTicketPage(@PathVariable("id") Long ticketId,Model model, HttpSession session, @ModelAttribute("ticket") Ticket editTicket) {
+	public String showEditTicketPage(@PathVariable("id") Long ticketId, Model model, HttpSession session, @ModelAttribute("ticket") Ticket editTicket) {
 		Long userId = (Long) session.getAttribute("userId");
 		User user = userService.findUserById(userId);
 		if(userId != null) {
+			
 			model.addAttribute("user", user);
-    		List<User> assignee = userService.findAllUsers();
+    		
+			List<User> assignee = userService.findAllUsers();
     		model.addAttribute("assignees", assignee);
 			
-//    		//TODO: render a dropdown menu of severityType
-//    		List<Ticket> severityType  = ticketService.findTicketsBySeverityType(severityType);
-//    		model.addAttribute("severityType", severityType);
+			Ticket ticket = ticketService.findTicketById(ticketId);
+			model.addAttribute("ticket", ticket);
+			
     		model.addAttribute("severityTypes", SeverityType.severityType);
-    		
-            //TODO: render a dropdown menu of status
-//    		List<Status> status  = ticketService.findByStatus();
-//          model.addAttribute("statuses", status);
 			model.addAttribute("statuses", Status.status);
 			
-			Ticket ticket = ticketService.findTicketById(ticketId);
-			model.addAttribute("name", ticket.getName());
-			model.addAttribute("severity", ticket.getSeverityType());
-			model.addAttribute("status", ticket.getStatus());
-			model.addAttribute("dueDate", ticket.getDueDate());
-			model.addAttribute("description", ticket.getDescription());
 			return "editTicket.jsp";
 		}else {
 			return "redirect:/welcome";
@@ -285,11 +278,9 @@ public class MainController {
 		}
 		
 	}
-	
 	//post to redirect to render search results
 	@PostMapping("/tickets/search")
 	public String doSearch(@RequestParam(value="searchString") String searchString) {
 		return "redirect:/tickets/search/"+searchString;
 	}
-	
 }

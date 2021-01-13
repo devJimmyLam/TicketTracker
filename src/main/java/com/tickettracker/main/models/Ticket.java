@@ -14,13 +14,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,6 +38,7 @@ public class Ticket {
     private String severityType;
     private String status;
     @DateTimeFormat(pattern="yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     private Date dueDate;
     @Size(min=5, max=255, message="Must be at least 3 characters long.")
     private String description;
