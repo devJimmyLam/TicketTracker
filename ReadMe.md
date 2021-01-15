@@ -63,11 +63,11 @@ That's it! You're connected now; if you try and start your project, it will thro
 
 ## Built With
 * Front-End
-  * [React.js](https://reactjs.org/)
   * [SASS](https://sass-lang.com/)
   * [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 * Back-End
   * [Java](https://www.oracle.com/java/technologies/)
+  * [Spring](https://spring.io/projects/spring-framework)
 * Testing
   * [Spring Tool Suite (STS)](https://spring.io/tools/)
 
