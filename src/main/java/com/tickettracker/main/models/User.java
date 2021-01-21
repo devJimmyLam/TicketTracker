@@ -31,14 +31,14 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 	
-    @Size(min=2, message="First Name  must be at least 2 characters long.")
+    @Size(min=2, message="First Name  must be at least 2 characters.")
     private String firstName;
-    @Size(min=2, message="Last Name  must be at least 2 characters long.")
+    @Size(min=2, message="Last Name  must be at least 2 characters.")
     private String lastName;
     @Email(message="Email must be present and valid format. i.e jondoe@mail")
     @Size(min=1, message="You must enter an email.")
     private String email;
-    @Size(min=8, message="Password must be at least 8 characters long.")
+    @Size(min=8, message="Password must be at least 8 characters.")
     private String password;
     @Transient
     @Size(min=8,message="Password must match.")

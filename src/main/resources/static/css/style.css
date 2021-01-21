@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* css reset */
-html, body, div, span, applet, object, iframe,
+/* html, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -21,14 +21,12 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+HTML5 display-role reset for older browsers
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-body {
-	line-height: 1;
-}
+
 ol, ul {
 	list-style: none;
 }
@@ -44,12 +42,12 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
+ */
 /* main.css begin here */
 body {
 	margin: 0;
     padding: 0;
-	background: linear-gradient(270deg, hsla(266, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+	background: #d3d3d3;
 }
 
 #navbar-bg{
@@ -72,10 +70,17 @@ body {
 	margin-top: 100px;
 }
 
+#btn-action{
+	display: flex;
+	flex-direction: row;
+}
+
 #assigned-table{
 	background-color: #a8dadc;
 		padding: 20px;
 	margin-top: 100px;
 }
+
+
 
 
