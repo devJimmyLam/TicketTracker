@@ -1,6 +1,11 @@
 
 # TicketTracker
-TicketTracker is a ticketing tool that processes and catalogs users issue requests. You can raise requests that deal with incidents, changes, issues, and other services using TicketTracker. 
+Ticketing management tool that processes and catalogs users issue requests that deal with incidents, changes and issues to optimize workflow. 
+## Features 
+- Tickets can be assigned and reassigned to different users.
+- Users can search for ticket Status using search bar.
+- Users can add messages to tickets and communicate to each other about ticket status. 
+- User must authenticate using login/registration before using application. 
 ## Demo
 <p align="center">
   <img src="./src/main/resources/images/DEMO_ticket tracker.gif">
@@ -14,9 +19,9 @@ TicketTracker is a ticketing tool that processes and catalogs users issue reques
 <hr/>
 
 ## Technology Used 
-- Engineered using React.js and Java Spring Boot to create RESTful API Controller.
-- Integrated Jbcrypt passwords hashing to enhance user authentication and registration.
-- Integrated HTML5, CSS3/SASS and BootStrap to add mobile and desktop responsiveness.
+- Integrated Java BCrypt encryption and session management to authenticate user login and registration.
+- Engineered data models leveraging Spring Data JPA such as 1:N and N:N relationships within MySQL to connect users, allowing for ticket messaging.
+- Designed responsive frontend using Bootstrap for a minimalistic and smooth user interface.
 
 
 ## Getting Started
