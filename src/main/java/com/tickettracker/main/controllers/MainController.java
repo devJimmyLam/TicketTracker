@@ -42,24 +42,15 @@ public class MainController {
 		this.messageService = messageService;
 	}
     @GetMapping("/welcome")
-    public String showWelcomePage(
-    		@ModelAttribute("user") User user, 
-    		Model model, 
-    		HttpSession session) {
+    public String welcome(@ModelAttribute("user") User user, Model model, HttpSession session) {
 			return "welcome.jsp";
 	}
 	///////
 	//Users Controller methods
 	///////
     @PostMapping(value="/registration")
-    public String registerUser(
-    		Model model,
-    		@Valid @ModelAttribute("user") User user,
-    		BindingResult result, 
-    		HttpSession session) {
-        
+    public String register(@Valid @ModelAttribute("user") User user,BindingResult result, Model model, HttpSession session) {
     	userValidator.validate(user, result);
-        
     	if(result.hasErrors()) {
     		System.out.println("user register error");
             return "welcome.jsp";
@@ -70,13 +61,7 @@ public class MainController {
     }
 
     @PostMapping(value="/login")
-    public String loginUser(
-    		@RequestParam("email") String email, 
-    		@RequestParam("password") String password,
-    		@ModelAttribute("user") User user,
-    		HttpSession session,
-    		RedirectAttributes flashMessage) {
-        // if the user is authenticated, save their user id in session
+    public String login(@RequestParam("email") String email, @RequestParam("password") String password, @ModelAttribute("user") User user,HttpSession session,RedirectAttributes flashMessage) {
     	if(userService.authenticateUser(email, password)) {
     		User thisUser = userService.findUserByEmail(email);
     		session.setAttribute("userId", thisUser.getId());
@@ -90,16 +75,14 @@ public class MainController {
     }
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        // invalidate session
     	session.invalidate();
-        // redirect to login page
     	return "redirect:/welcome";
     }
 	////////
 	//Tickets Controller methods
 	////////
     @GetMapping("/tickets")
-    public String showAllTickets(@ModelAttribute("ticket") Ticket ticket, Model model, HttpSession session) {
+    public String dashboard(@ModelAttribute("ticket") Ticket ticket, Model model, HttpSession session) {
     	Long id = (Long) session.getAttribute("userId");
     	if(id != null) {
     		User user = userService.findUserById((Long) session.getAttribute("userId"));
@@ -117,7 +100,7 @@ public class MainController {
   	}
 	
     @GetMapping("/tickets/new")
-	public String newTicketPage(@ModelAttribute("ticket") Ticket ticket, Model model, HttpSession session) {
+	public String newTicket(@ModelAttribute("ticket") Ticket ticket, Model model, HttpSession session) {
        	Long id = (Long) session.getAttribute("userId");
     	if(id != null) {
     		User user = userService.findUserById((Long) session.getAttribute("userId"));
@@ -135,7 +118,7 @@ public class MainController {
     }
 	
     @PostMapping("/tickets/add")
-	public String createTicket(@Valid @ModelAttribute("ticket") Ticket ticket, BindingResult result,Model model, HttpSession session){
+	public String create(@Valid @ModelAttribute("ticket") Ticket ticket, BindingResult result,Model model, HttpSession session){
 		Long userId = (Long) session.getAttribute("userId");
 		User user = userService.findUserById(userId);
 		if(result.hasErrors()) {
@@ -170,7 +153,7 @@ public class MainController {
 	}
 	
 	@RequestMapping("/tickets/{id}/edit")
-	public String showEditTicketPage(@PathVariable("id") Long ticketId, Model model, HttpSession session, @ModelAttribute("ticket") Ticket editTicket) {
+	public String showEdit(@PathVariable("id") Long ticketId, Model model, HttpSession session, @ModelAttribute("ticket") Ticket editTicket) {
 		Long userId = (Long) session.getAttribute("userId");
 		User user = userService.findUserById(userId);
 		if(userId != null) {
@@ -193,7 +176,7 @@ public class MainController {
 	}
 	
 	@PostMapping("/tickets/{id}/update")
-	public String editTicket(@PathVariable("id") Long ticketId, Model model, HttpSession session, @Valid @ModelAttribute("ticket") Ticket editTicket, BindingResult result) {
+	public String edit(@PathVariable("id") Long ticketId, Model model, HttpSession session, @Valid @ModelAttribute("ticket") Ticket editTicket, BindingResult result) {
 		Long userId = (Long) session.getAttribute("userId");
 		User user = userService.findUserById(userId);
 		Ticket ticket = ticketService.findTicketById(ticketId);
@@ -218,7 +201,7 @@ public class MainController {
 	}
 	
 	@PostMapping("/tickets/{id}/delete")
-	public String deleteTicket(@PathVariable("id") Long ticketId, HttpSession session) {
+	public String delete(@PathVariable("id") Long ticketId, HttpSession session) {
 		Ticket ticket = ticketService.findTicketById(ticketId);
 		ticketService.deleteTicket(ticket);
 			return "redirect:/tickets";
@@ -258,15 +241,14 @@ public class MainController {
 	//////////
 	//Search  methods
 	//////////
-	//get to show all tickets and search
 	@RequestMapping("/tickets/search/{searchString}")
-	public String searchSeverity(@PathVariable("searchString") String search, HttpSession session, Model model) {
+	public String searchStatus(@PathVariable("searchString") String search, HttpSession session, Model model) {
 		Long userId = (Long) session.getAttribute("userId");
 		if(userId != null) {
 			User user = userService.findUserById((Long) session.getAttribute("userId"));
 			model.addAttribute("user", user);
 			//search for ticket
-			List<Ticket> tickets = ticketService.findBySeverityType(search);
+			List<Ticket> tickets = ticketService.findByStatus(search);
 			model.addAttribute("tickets", tickets);
 			System.out.println("enter search");
 		
@@ -278,7 +260,6 @@ public class MainController {
 		}
 		
 	}
-	//post to redirect to render search results
 	@PostMapping("/tickets/search")
 	public String doSearch(@RequestParam(value="searchString") String searchString) {
 		return "redirect:/tickets/search/"+searchString;

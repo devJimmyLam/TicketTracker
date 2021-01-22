@@ -32,7 +32,6 @@ public class Ticket {
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-	private String number;
 	@Size(min=3, message="Must be at least 3 characters long.")
     private String name;
     private String severityType;
@@ -119,15 +118,7 @@ public class Ticket {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getNumber() {
-		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
+	
 	public String getName() {
 		return name;
 	}
