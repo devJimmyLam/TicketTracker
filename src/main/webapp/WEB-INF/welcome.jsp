@@ -34,7 +34,6 @@
 			</form>
 		</div>
 	</nav>
-
 	<div class="container justify-content-center">
 		<div id="register" class=" justify-content-end rounded">
 			<div class="card-body">
@@ -46,14 +45,16 @@
 				<form:form action="/registration" method="POST"
 					modelAttribute="user">
 					<div class="form-group justify-content-end row">
-						<label class="col-sm-2 col-form-label text-white ">First Name:</label>
+						<label class="col-sm-2 col-form-label text-white ">First
+							Name:</label>
 						<div class="col-sm-6">
 							<form:input path="firstName" type="text" />
 							<form:errors path="firstName" class="text-danger" />
 						</div>
 					</div>
 					<div class="form-group justify-content-end row">
-						<label class="col-sm-2 col-form-label text-white">Last Name:</label>
+						<label class="col-sm-2 col-form-label text-white">Last
+							Name:</label>
 						<div class="col-sm-6">
 							<form:input path="lastName" type="text" />
 							<form:errors path="lastName" class="text-danger" />
@@ -67,21 +68,23 @@
 						</div>
 					</div>
 					<div class="form-group justify-content-end  row">
-						<label for="inputPassword" class="col-sm-2 col-form-label text-white">Password:</label>
+						<label for="inputPassword"
+							class="col-sm-2 col-form-label text-white">Password:</label>
 						<div class="col-sm-6">
 							<form:input path="password" type="password" />
 							<form:errors path="password" class="text-danger" />
 						</div>
 					</div>
 					<div class="form-group  justify-content-end row">
-						<label for="inputPassword" class="col-sm-2 col-form-label text-white ">Confirm
+						<label for="inputPassword"
+							class="col-sm-2 col-form-label text-white ">Confirm
 							Password:</label>
 						<div class="col-sm-6">
 							<form:input path="passwordConfirmation" type="password" />
 							<form:errors path="passwordConfirmation" class="text-danger" />
 						</div>
 					</div>
-					<div class="justify-content-end row" style="margin-left:-11.5em">
+					<div class="justify-content-end row" style="margin-left: -11.5em">
 						<div class="col-sm-6">
 							<button id="register-btn" type="submit" class="btn btn-primary">Register</button>
 						</div>

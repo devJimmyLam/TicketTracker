@@ -18,25 +18,27 @@
 <title>TicketTracker</title>
 </head>
 <body>
-	<nav id="navbar-bg" class="navbar justify-content-between">
+	<nav class="navbar navbar-expand-lg navbar-light">
 		<a class="navbar-brand text-primary" href="#"><h3>TicketTracker</h3></a>
-		<a class="btn btn-outline-success btn-sm my-2 my-sm-0"href="/tickets/new">New Ticket</a>
-		<form class="form-inline my-2 my-lg-0" action="/tickets/search" method="POST">
+		<form class="form-inline my-2 my-lg-0" action="/tickets/search"
+			method="POST">
 			<input class="form-group input-sm mr-sm-2" type="text"
 				name="searchString" placeholder="Status" aria-label="Status">
 			<button class="btn btn-outline-info btn-sm my-2 my-sm-0"
 				type="submit">Search</button>
 		</form>
-		<div class="navbar">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link text-primary" href="/logout">Logout (<c:out value="${user.firstName}" />)</a>
-				</li>
-			</ul>
-		</div>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link text-success"
+				href="/tickets/new"><b>New Ticket</b></a></li>
+			<li class="nav-item"><a class="nav-link disable" href="#"><span
+					class="text-dark">|</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="/logout">Logout
+					(<c:out value="${user.firstName}" />)
+			</a></li>
+		</ul>
 	</nav>
 	<div class="container">
-		<div class="row" style="">
+		<div class="row">
 			<div class="col">
 				<div class="row">
 					<table id="created-table" class="table table-bordered ">
@@ -58,15 +60,13 @@
 											${ticket.assignee.lastName}</td>
 										<td>${ticket.severityType}</td>
 										<td>${ticket.status}</td>
-										<td id="btn-action">
-											<a
+										<td id="btn-action"><a
 											class="btn btn-outline-primary btn-sm mr-2"
 											href="/tickets/${ticket.id}/edit">Edit</a>
 
 											<form action="/tickets/${ticket.id}/delete" method="post">
 												<button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
-											</form>
-										</td>
+											</form></td>
 									</c:if>
 								</tr>
 							</c:forEach>

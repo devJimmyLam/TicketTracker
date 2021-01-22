@@ -17,26 +17,29 @@
 	crossorigin="anonymous">
 <title>TicketTracker</title>
 </head>
-<body style="background: #d3d3d3">
-	<nav
-		class="navbar navbar-dark bg-dark navbar-expand-sm justify-content-between">
-		<a class="navbar-brand text-info" href="#">TicketTracker</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="/tickets">Dashboard</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="/logout">Logout(<c:out
-							value="${user.firstName}" />)
-				</a></li>
-			</ul>
-		</div>
+<body>
+	<nav id="navbar-bg" class="navbar navbar-expand-lg navbar-light">
+		<a class="navbar-brand text-primary" href="#"><h3>TicketTracker</h3></a>
+		<form class="form-inline my-2 my-lg-0" action="/tickets/search"
+			method="POST">
+			<input class="form-group input-sm mr-sm-2" type="text"
+				name="searchString" placeholder="Status" aria-label="Status">
+			<button class="btn btn-outline-info btn-sm my-2 my-sm-0"
+				type="submit">Search</button>
+		</form>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link text-success"
+				href="/tickets/new"><b>New Ticket</b></a></li>
+			<li class="nav-item"><a class="nav-link disable" href="#"><span
+					class="text-dark">|</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="/tickets">Dashboard</a>
+			</li>
+			<li class="nav-item"><a class="nav-link disable" href="#"><span
+					class="text-dark">|</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="/logout">Logout
+					(<c:out value="${user.firstName}" />)
+			</a></li>
+		</ul>
 	</nav>
 	<div class="container">
 		<div class="row">
@@ -95,17 +98,11 @@
 						<form:errors class="text-danger" path="description" />
 					</div>
 
-					<div class="d-flex justify-content-end">
-						<a class="btn btn-warning btn-sm mr-sm-2 my-sm-0" href="/tickets" type="btn">Cancel</a>
+					<div class="d-flex justify-content-start">
+						<a class="btn btn-warning btn-sm mr-sm-2 my-sm-0" href="/tickets"
+							type="btn">Cancel</a>
 						<button type="submit" class="btn btn-success btn-sm">Update</button>
 					</div>
-<!-- 					<div class="col">
-						<div class="row my-2 justify-content-end">
-							<a class="btn btn-warning my-2 my-sm-0" href="/tickets"
-								type="btn">Cancel</a>
-						</div>
-					</div> -->
-
 				</form:form>
 			</div>
 		</div>
