@@ -3,7 +3,7 @@
 TicketTracker is a ticketing tool that processes and catalogs users issue requests. You can raise requests that deal with incidents, changes, issues, and other services using TicketTracker. 
 ## Demo - COMING SOON -
 <p align="center">
-  <img src="./DEMO_ticket tracker.mov">
+  <img src="./src/main/resources/images/DEMO_ticket tracker.gif">
 </p>
 <hr/>
 
