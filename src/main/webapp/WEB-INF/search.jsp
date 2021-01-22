@@ -45,34 +45,24 @@
 		<div class="row my-2 justify-content-center">
 			<div class="col-6">
 				<h3>
-					Tickets by Severity Type:
+					Tickets by Status:
 					<c:out value="${query}" />
 				</h3>
 			</div>
 		</div>
 		<div class="row">
-			<table class="table table-striped table-bordered ">
+			<table id="created-table" class="table table-bordered ">
 				<thead class="thead-dark">
-					<th><h3>CREATED TICKETS</h3></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</thead>
-				<thead class="thead-dark">
-					<th>Issues:</th>
+					<th>Created Tickets:</th>
 					<th>Ticket#:</th>
-					<th>Assignee:</th>
+					<th>Assigned To:</th>
 					<th>Severity:</th>
 					<th>Status:</th>
 					<th>Actions:</th>
 				</thead>
 				<tbody>
 					<c:forEach items="${tickets}" var="ticket">
-
 						<tr>
-							<!-- TODO: if ticket creator id is = to loggedin user-->
 							<c:if test="${ticket.userIsCreator(user)}">
 								<td><a href="/tickets/${ticket.id}">${ticket.name}</a></td>
 								<td>${ticket.id}</td>
@@ -80,32 +70,22 @@
 									${ticket.assignee.lastName}</td>
 								<td>${ticket.severityType}</td>
 								<td>${ticket.status}</td>
-								<td><a class="btn btn-outline-primary btn-sm"
+								<td id="btn-action"><a
+									class="btn btn-outline-primary btn-sm mr-2"
 									href="/tickets/${ticket.id}/edit">Edit</a>
 									<form action="/tickets/${ticket.id}/delete" method="post">
 										<button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
-									</form>
+									</form></td>
 							</c:if>
-
-							</td>
 						</tr>
-
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 		<div class="row">
-			<table class="table table-striped table-bordered ">
+			<table id="assigned-table" class="table table-bordered ">
 				<thead class="thead-dark">
-					<th><h3>ASSIGNED TICKETS</h3></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</thead>
-				<thead class="thead-dark">
-					<th>Issues:</th>
+					<th>Assigned Tickets:</th>
 					<th>Ticket#:</th>
 					<th>Created By:</th>
 					<th>Severity:</th>
@@ -114,7 +94,6 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${tickets}" var="ticket">
-						<!-- TODO: create if statement if user is creator then they can edit their own tickets-->
 						<tr>
 							<c:if test="${ticket.userIsAssignee(user)}">
 								<td><a href="/tickets/${ticket.id}">${ticket.name}</a></td>
@@ -126,14 +105,10 @@
 									href="/tickets/${ticket.id}/edit">Edit</a></td>
 							</c:if>
 						</tr>
-
 					</c:forEach>
-
 				</tbody>
 			</table>
 		</div>
-
 	</div>
-
 </body>
 </html>
