@@ -17,14 +17,15 @@
 	crossorigin="anonymous">
 <title>TicketTracker</title>
 </head>
-<body style="background: #d3d3d3;" >
+<body style="background: #d3d3d3;">
 	<nav class="navbar navbar-expand-lg" style="background: #1c1e21;">
 		<a class="navbar-brand text-primary" href="#"><h3>TicketTracker</h3></a>
 		<form class="form-inline my-2 my-lg-0" action="/tickets/search"
 			method="POST">
 			<input class="form-control input-sm mr-sm-2" type="text"
 				title="Search by Creator/Assignee/Severity/Status"
-				name="searchString" placeholder="Creator/Assigne/Status" aria-label="Creator/Assignee/Status">
+				name="searchString" placeholder="Creator/Assigne/Status"
+				aria-label="Creator/Assignee/Status">
 			<button class="btn btn-outline-info btn-sm my-2 my-sm-0"
 				title="Search by Creator/Assignee/Severity/Status" type="submit">Search</button>
 		</form>
@@ -52,7 +53,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<table id="created-table" class="table table-bordered ">
+			<table id="created-table" class="table table-bordered "
+				style="background: #d7f9d1;">
 				<thead class="thead-dark">
 					<th>Created Tickets:</th>
 					<th>Ticket#:</th>
@@ -72,10 +74,15 @@
 								<td>${ticket.severityType}</td>
 								<td>${ticket.status}</td>
 								<td id="btn-action"><a
-									class="btn btn-outline-primary btn-sm mr-2"
+									class="btn btn-outline-primary btn-sm"
+									style="padding: 2px 12px;"
 									href="/tickets/${ticket.id}/edit">Edit</a>
+
 									<form action="/tickets/${ticket.id}/delete" method="post">
-										<button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+										<button 
+										class="btn btn-outline-danger btn-sm" 
+										style="padding: 2px 4px;"
+										type="submit">Delete</button>
 									</form></td>
 							</c:if>
 						</tr>
@@ -84,7 +91,8 @@
 			</table>
 		</div>
 		<div class="row">
-			<table id="assigned-table" class="table table-bordered ">
+			<table id="assigned-table" class="table table-bordered "
+				style="background-color: #c6dde1;">
 				<thead class="thead-dark">
 					<th>Assigned Tickets:</th>
 					<th>Ticket#:</th>
