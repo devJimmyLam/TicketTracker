@@ -3,7 +3,7 @@
 Ticketing management tool that processes and catalogs users issue requests that deal with incidents, changes and issues to optimize workflow. 
 ## Features 
 - Tickets can be assigned and reassigned to different users.
-- Users can search for ticket Status using search bar.
+- Users can search for tickets by Creator, Assignee, Severity or Status using search bar.
 - Users can add messages to tickets and communicate to each other about ticket status. 
 - User must authenticate using login/registration before using application. 
 ## Demo
