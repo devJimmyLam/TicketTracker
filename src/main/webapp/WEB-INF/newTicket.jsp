@@ -22,10 +22,11 @@
 		<a class="navbar-brand text-primary" href="#"><h3>TicketTracker</h3></a>
 		<form class="form-inline my-2 my-lg-0" action="/tickets/search"
 			method="POST">
-			<input class="form-group input-sm mr-sm-2" type="text"
-				name="searchString" placeholder="Status" aria-label="Status">
+			<input class="form-control input-sm mr-sm-2" type="text"
+				title="Search by Creator/Assignee/Severity/Status"
+				name="searchString" placeholder="Creator/Assigne/Status" aria-label="Creator/Assignee/Status">
 			<button class="btn btn-outline-info btn-sm my-2 my-sm-0"
-				type="submit">Search</button>
+				title="Search by Creator/Assignee/Severity/Status" type="submit">Search</button>
 		</form>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item"><a class="nav-link text-light" href="/tickets">Dashboard</a>
@@ -92,6 +93,7 @@
 
 					<div class="row my-2 ml-5 justify-content-center">
 						<button type="submit" class="btn btn-success ml-5">Add Ticket</button>
+						
 					</div>
 
 				</form:form>
