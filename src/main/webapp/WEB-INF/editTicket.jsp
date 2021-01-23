@@ -17,8 +17,8 @@
 	crossorigin="anonymous">
 <title>TicketTracker</title>
 </head>
-<body>
-	<nav id="navbar-bg" class="navbar navbar-expand-lg navbar-light">
+<body style="background: #d3d3d3;">
+	<nav class="navbar navbar-expand-lg" style="background: #1c1e21;">
 		<a class="navbar-brand text-primary" href="#"><h3>TicketTracker</h3></a>
 		<form class="form-inline my-2 my-lg-0" action="/tickets/search"
 			method="POST">
@@ -31,13 +31,13 @@
 			<li class="nav-item"><a class="nav-link text-success"
 				href="/tickets/new"><b>New Ticket</b></a></li>
 			<li class="nav-item"><a class="nav-link disable" href="#"><span
-					class="text-dark">|</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="/tickets">Dashboard</a>
-			</li>
+					class="text-light">|</span></a></li>
+			<li class="nav-item"><a class="nav-link text-light"
+				href="/tickets">Dashboard</a></li>
 			<li class="nav-item"><a class="nav-link disable" href="#"><span
-					class="text-dark">|</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="/logout">Logout
-					(<c:out value="${user.firstName}" />)
+					class="text-white">|</span></a></li>
+			<li class="nav-item"><a class="nav-link text-light"
+				href="/logout">Logout (<c:out value="${user.firstName}" />)
 			</a></li>
 		</ul>
 	</nav>
@@ -53,10 +53,11 @@
 						<div class="col-6">Issue Name:</div>
 						<form:input path="name" class="col-6" type="text"
 							value="${ticket.name}" />
+
 					</div>
 					<div class="row my-2">
 						<div class="col-6">Status</div>
-						<form:select path="status" class="col-3" type="text">
+						<form:select path="status" class="col-6" type="text">
 							<c:forEach items="${statuses}" var="status">
 								<option value="${status}"
 									<c:if test="${ticket.status.equals(status)}">selected</c:if>><c:out
@@ -66,7 +67,7 @@
 					</div>
 					<div class="row my-2">
 						<div class="col-6">Severity Type</div>
-						<form:select path="severityType" class="col-3">
+						<form:select path="severityType" class="col-6">
 							<c:forEach items="${severityTypes}" var="severityType">
 								<option value="${severityType}"
 									<c:if test="${ticket.severityType.equals(severityType)}">selected</c:if>><c:out
@@ -82,7 +83,7 @@
 
 					<div class="row my-2">
 						<div class="col-6">Assignee:</div>
-						<form:select path="assignee" class="col-3">
+						<form:select path="assignee" class="col-6">
 							<c:forEach items="${assignees}" var="assignee">
 								<form:option value="${assignee}">
 									<c:out value="${assignee.firstName} ${assignee.lastName}" />
@@ -93,15 +94,15 @@
 
 					<div class="row my-2">
 						<div class="col-6">Description:</div>
-						<form:input path="description" type="text" class="col-6"
-							value="${description}" />
+						<form:textarea path="description" type="text" row="6"
+							class="form-group" value="${description}" />
 						<form:errors class="text-danger" path="description" />
 					</div>
 
 					<div class="d-flex justify-content-start">
+						<button type="submit" class="btn btn-success btn-sm mr-2">Update</button>
 						<a class="btn btn-warning btn-sm mr-sm-2 my-sm-0" href="/tickets"
 							type="btn">Cancel</a>
-						<button type="submit" class="btn btn-success btn-sm">Update</button>
 					</div>
 				</form:form>
 			</div>

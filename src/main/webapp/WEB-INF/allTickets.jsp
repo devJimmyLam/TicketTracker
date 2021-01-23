@@ -17,8 +17,8 @@
 	crossorigin="anonymous">
 <title>TicketTracker</title>
 </head>
-<body>
-	<nav class="navbar navbar-expand-lg navbar-light">
+<body style="background: #d3d3d3;">
+	<nav class="navbar navbar-expand-lg" style="background: #1c1e21;">
 		<a class="navbar-brand text-primary" href="#"><h3>TicketTracker</h3></a>
 		<form class="form-inline my-2 my-lg-0" action="/tickets/search"
 			method="POST">
@@ -31,9 +31,9 @@
 			<li class="nav-item"><a class="nav-link text-success"
 				href="/tickets/new"><b>New Ticket</b></a></li>
 			<li class="nav-item"><a class="nav-link disable" href="#"><span
-					class="text-dark">|</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="/logout">Logout
-					(<c:out value="${user.firstName}" />)
+					class="text-light">|</span></a></li>
+			<li class="nav-item"><a class="nav-link text-light"
+				href="/logout">Logout (<c:out value="${user.firstName}" />)
 			</a></li>
 		</ul>
 	</nav>
@@ -41,7 +41,7 @@
 		<div class="row">
 			<div class="col">
 				<div class="row">
-					<table id="created-table" class="table table-bordered ">
+					<table id="created-table" class="table table-bordered">
 						<thead class="thead-dark">
 							<th>Created Tickets:</th>
 							<th>Ticket#:</th>
@@ -78,7 +78,7 @@
 		<div class="row">
 			<div class="col">
 				<div class="row">
-					<table id="assigned-table" class="table table-bordered ">
+					<table id="assigned-table" class="table table-bordered">
 						<thead class="thead-dark">
 							<th>Assigned Tickets:</th>
 							<th>Ticket#:</th>

@@ -17,8 +17,8 @@
 	crossorigin="anonymous">
 <title>TicketTracker</title>
 </head>
-<body>
-	<nav id="navbar-bg" class="navbar navbar-expand-lg navbar-light">
+<body style="background: #d3d3d3;">
+	<nav class="navbar navbar-expand-lg" style="background: #1c1e21;">
 		<a class="navbar-brand text-primary" href="#"><h3>TicketTracker</h3></a>
 		<form class="form-inline my-2 my-lg-0" action="/tickets/search"
 			method="POST">
@@ -31,18 +31,18 @@
 			<li class="nav-item"><a class="nav-link text-success"
 				href="/tickets/new"><b>New Ticket</b></a></li>
 			<li class="nav-item"><a class="nav-link disable" href="#"><span
-					class="text-dark">|</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="/tickets">Dashboard</a>
-			</li>
+					class="text-light">|</span></a></li>
+			<li class="nav-item"><a class="nav-link text-light"
+				href="/tickets">Dashboard</a></li>
 			<li class="nav-item"><a class="nav-link disable" href="#"><span
-					class="text-dark">|</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="/logout">Logout
-					(<c:out value="${user.firstName}" />)
+					class="text-white">|</span></a></li>
+			<li class="nav-item"><a class="nav-link text-light"
+				href="/logout">Logout (<c:out value="${user.firstName}" />)
 			</a></li>
 		</ul>
 	</nav>
 	<div class="container">
-		<header>
+		<header class="mt-4">
 			<div class="row justify-content-between">
 				<h1>
 					Ticket# :
@@ -58,38 +58,38 @@
 							href="/tickets/${ticket.id}/edit" type="btn">Edit Ticket</a>
 					</div>
 				</div>
-				<div class="row my-1">
+				<div class="row my-1 p-3">
 					<div class="col-3">Issue:</div>
 					<div class="col-8">
 						<c:out value="${ticket.name}" />
 					</div>
 				</div>
-				<div class="row my-1">
+				<div class="row my-1 p-3">
 					<div class="col-3">Status:</div>
 					<div class="col-8">
 						<c:out value="${ticket.status}" />
 					</div>
 				</div>
-				<div style="border-style: solid;">
-					<div class="row my-1">
+				<div class="p-2"style="border-style: solid; height:280px;">
+					<div class="row my-1 p-2">
 						<div class="col-3">Severity Type:</div>
 						<div class="col-8">
 							<c:out value="${ticket.severityType}" />
 						</div>
 					</div>
-					<div class="row my-1">
+					<div class="row my-1 p-2">
 						<div class="col-3">Due Date:</div>
 						<div class="col-8">
 							<c:out value="${ticket.dueDate}" />
 						</div>
 					</div>
-					<div class="row my-1">
+					<div class="row my-1 p-2">
 						<div class="col-3">Assignee:</div>
 						<div class="col-8">
 							<c:out value="${ticket.assignee.firstName}" />
 						</div>
 					</div>
-					<div class="row my-1">
+					<div class="row my-1 p-2">
 						<div class="col-3">Description:</div>
 						<div class="col-8">
 							<c:out value="${ticket.description}" />
@@ -101,7 +101,7 @@
 				<h3 style="margin-left: -15px">Message Log</h3>
 				<div class="row my-2">
 					<div style="overflow-y: scroll; height: 300px;"
-						class="container border border-dark">
+						class="container border border-dark bg-white">
 						<c:forEach items="${ticket.messages}" var="message">
 							<p>
 								Sent:

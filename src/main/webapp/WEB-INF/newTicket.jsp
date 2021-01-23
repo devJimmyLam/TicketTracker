@@ -17,8 +17,8 @@
 	crossorigin="anonymous">
 <title>TicketTracker</title>
 </head>
-<body>
-	<nav id="navbar-bg" class="navbar navbar-expand-lg navbar-light">
+<body style="background: #d3d3d3">
+	<nav class="navbar navbar-expand-lg" style="background: #1c1e21;">
 		<a class="navbar-brand text-primary" href="#"><h3>TicketTracker</h3></a>
 		<form class="form-inline my-2 my-lg-0" action="/tickets/search"
 			method="POST">
@@ -28,16 +28,16 @@
 				type="submit">Search</button>
 		</form>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item"><a class="nav-link" href="/tickets">Dashboard</a>
+			<li class="nav-item"><a class="nav-link text-light" href="/tickets">Dashboard</a>
 			</li>
-			<li class="nav-item"><a class="nav-link disable" href="#"><span class="text-dark">|</span></a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="/logout">Logout
+			<li class="nav-item"><a class="nav-link disable" href="#"><span
+					class="text-white">|</span></a></li>
+			<li class="nav-item"><a class="nav-link text-light" href="/logout">Logout
 					(<c:out value="${user.firstName}" />)
 			</a></li>
 		</ul>
 	</nav>
-	<div class="container">
+	<div class="container" style="background: #d3d3d3">
 		<div class="row">
 			<div class="col-6">
 				<div class="row my-2">
@@ -86,12 +86,12 @@
 
 					<div class="row my-2">
 						<div class="col-6">Description:</div>
-						<form:input path="description" type="text" class="col-6" />
+						<form:textarea path="description" type="text" row="6" class="form-group" />
 						<form:errors class="text-danger" path="description" />
 					</div>
 
-					<div class="row my-2 justify-content-end">
-						<button type="submit" class="btn btn-success">Add Ticket</button>
+					<div class="row my-2 ml-5 justify-content-center">
+						<button type="submit" class="btn btn-success ml-5">Add Ticket</button>
 					</div>
 
 				</form:form>

@@ -18,7 +18,7 @@
 	crossorigin="anonymous">
 <title>TicketTracker</title>
 </head>
-<body>
+<body style="background: #d3d3d3;">
 	<nav id="navbar-bg" class="navbar justify-content-between">
 		<a class="navbar-brand text-primary" href="#"><h1>TicketTracker</h1></a>
 		<div class="navbar">
