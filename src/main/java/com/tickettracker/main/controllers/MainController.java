@@ -185,6 +185,7 @@ public class MainController {
 			model.addAttribute("name", ticket.getName());
 			model.addAttribute("severityType", ticket.getSeverityType());
 			model.addAttribute("status", ticket.getStatus());
+			model.addAttribute("assignee", ticket.getAssignee());
 			model.addAttribute("dueDate", ticket.getDueDate());
 			model.addAttribute("description", ticket.getDescription());
 			return "editTicket.jsp";
@@ -193,6 +194,7 @@ public class MainController {
 			ticket.setName(editTicket.getName());
 			ticket.setStatus(editTicket.getStatus());
 			ticket.setSeverityType(editTicket.getSeverityType());
+			ticket.setAssignee(editTicket.getAssignee());
 			ticket.setDueDate(editTicket.getDueDate());
 			ticket.setDescription(editTicket.getDescription());
 			ticketService.updateTicket(ticket);
